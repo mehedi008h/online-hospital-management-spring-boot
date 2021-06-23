@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="user/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+</head>
+<body>
+<section>
+  <div class="container bootstrap snippets bootdey mt-3">
+    <div class="row ng-scope">
+      <div class="col-md-4">
+        <div class="card card-white grid-margin">
+          <div class="card-heading clearfix text-center">
+            <h4 class="card-title">Blog No <span th:text="${bloodPost.id}"></span></h4>
+            <hr>
+            <div class="mt-1">
+              <h2><i class="fa fa-heading"></i></h2>
+              <h5 th:text="${bloodPost.title}"></h5>
+              <p></p>
+            </div>
+            <div class="mt-1">
+              <h1 style="color: deeppink"><i class="fas fa-file-medical-alt"></i></h1>
+              <p th:utext="${bloodPost.description}"></p>
+            </div>
+            <!-- User Information Table -->
+            <div class="table-responsive mt-5">
+              <table class="table table-user-information">
+                <tbody>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Email</strong>
+                  </td>
+                  <td th:text="${bloodPost.email}" class="text-primary"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-user  text-primary"></span>Phone</strong>
+                  </td>
+                  <td th:text="${bloodPost.phone}" class="text-primary"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Zilla</strong>
+                  </td>
+                  <td th:text="${bloodPost.zilla}" class="text-primary"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Thana</strong>
+                  </td>
+                  <td th:text="${bloodPost.thana}" class="text-primary"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Blood Group</strong>
+                  </td>
+                  <td th:text="${bloodPost.blood_group}" class="text-primary"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>Location</strong>
+                  </td>
+                  <td th:text="${bloodPost.location}" class="text-primary"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- End User Information Table -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card card-white grid-margin">
+          <div class="card-heading clearfix text-center">
+            <h4 class="card-title">Update Post</h4>
+            <form th:action="@{/user/update/{id}(id=${bloodPost.id})}" th:object="${bloodPost}" method="post">
+              <!-- Title -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-heading"></i>
+                  </div>
+                </div>
+                <input th:value="${bloodPost.title}" required type="text" id="title" name="title"
+                       placeholder="Enter title Here" class="form-control" />
+              </div>
+              <!-- Phone -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                </div>
+                <input th:value="${bloodPost.phone}" required type="number" id="phone" name="phone"
+                       placeholder="Enter number Here" class="form-control" />
+              </div>
+              <!-- Email -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-envelope-open-text"></i>
+                  </div>
+                </div>
+                <input th:value="${bloodPost.email}" required type="email" id="email" name="email"
+                       placeholder="Enter email Here" class="form-control" />
+              </div>
+              <!-- Zilla -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="far fa-address-card"></i>
+                  </div>
+                </div>
+                <input th:value="${bloodPost.zilla}" required type="text" id="zilla" name="zilla"
+                       placeholder="Enter zilla Here" class="form-control" />
+              </div>
+              <!-- Thana -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="far fa-address-card"></i>
+                  </div>
+                </div>
+                <input th:value="${bloodPost.thana}" required type="text" id="thana" name="thana"
+                       placeholder="Enter thana Here" class="form-control" />
+              </div>
+              <!-- Location -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-map-marked-alt"></i>
+                  </div>
+                </div>
+                <input th:value="${bloodPost.location}" required type="text" id="location" name="location"
+                       placeholder="Enter location Here" class="form-control" />
+              </div>
+              <!-- Blood group -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-clinic-medical"></i>
+                  </div>
+                </div>
+                <input th:value="${bloodPost.blood_group}" required type="text" id="blood_group" name="blood_group"
+                       placeholder="Enter blood group Here" class="form-control" />
+              </div>
+              <!-- User description -->
+              <div class="form-group mt-3">
+									<textarea th:text="${bloodPost.description}" name="description" id="mytextarea"
+                                              class="form-control" rows="10"
+                                              placeholder="Enter Description here.."></textarea>
+              </div>
+              <!-- Button -->
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn bg-primary text-white text-uppercase"
+                        type="submit">Post</button>
+                <button class="btn btn-warning text-white text-uppercase"
+                        type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
+</section>
+</body>
+</html>

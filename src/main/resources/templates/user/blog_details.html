@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<section>
+    <div class="blog-single gray-bg">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-8 m-15px-tb">
+                    <article class="article">
+                        <div class="article-title">
+                            <h2 th:text="${blog.title}">They Now Bade Farewell To The Kind But Unseen People</h2>
+                            <div class="media">
+                                <div class="avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <label>Rachel Roth</label>
+                                    <span>26 FEB 2020</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <p th:utext="${blog.description}"></p>
+                            <h4>Symptoms</h4>
+                            <p th:utext="${blog.symptoms}"></p>
+                            <h4>Solution</h4>
+                            <p th:utext="${blog.solution}"></p>
+                        </div>
+                        <div class="nav tag-cloud">
+                            <a href="#">Design</a>
+                            <a href="#">Development</a>
+                            <a href="#">Travel</a>
+                            <a href="#">Web Design</a>
+                            <a href="#">Marketing</a>
+                            <a href="#">Research</a>
+                            <a href="#">Managment</a>
+                        </div>
+                    </article>
+                    <div class="contact-form article-comment">
+                        <h4>Leave a Reply</h4>
+                        <form id="contact-form" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="send">
+                                        <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 m-15px-tb blog-aside">
+                    <!-- Author -->
+                    <div class="widget widget-author">
+                        <div class="widget-title">
+                            <h3>Author</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="media align-items-center">
+                                <div class="avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" title="" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <h6>Hello, I'm<br> Rachel Roth</h6>
+                                </div>
+                            </div>
+                            <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores</p>
+                        </div>
+                    </div>
+                    <!-- End Author -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

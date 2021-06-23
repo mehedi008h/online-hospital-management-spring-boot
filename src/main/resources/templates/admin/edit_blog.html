@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog</title>
+</head>
+<body>
+<section>
+    <div class="container bootstrap snippets bootdey mt-5">
+        <div class="row ng-scope">
+            <div class="col-md-4 mt-3">
+                <div class="card card-white grid-margin">
+                    <div class="card-heading clearfix text-center">
+                        <h4 class="card-title">Blog No <span th:text="${blog.id}"></span></h4>
+                        <hr>
+                        <div class="mt-1">
+                            <h2><i class="fa fa-heading"></i></h2>
+                            <h5 th:text="${blog.title}"></h5>
+                            <p th:text="${blog.type}"></p>
+                        </div>
+                        <div class="mt-1">
+                            <h1 style="color: deeppink"><i class="fas fa-file-medical-alt"></i></h1>
+                            <p th:utext="${blog.description}"></p>
+                        </div>
+                        <div class="mt-1">
+                            <h1 style="color: deeppink"><i class="fas fa-file-medical-alt"></i></h1>
+                            <p th:utext="${blog.symptoms}"></p>
+                        </div>
+                        <div class="mt-1">
+                            <h1 style="color: deeppink"><i class="fas fa-file-medical-alt"></i></h1>
+                            <p th:utext="${blog.solution}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mt-3">
+                <div class="card card-white grid-margin">
+                    <div class="card-heading clearfix text-center">
+                        <h4 class="card-title">Update Blog</h4>
+                        <form th:action="@{/admin/update/{id}(id=${blog.id})}" th:object="${blog}" method="post">
+                            <!-- Title -->
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-heading"></i>
+                                    </div>
+                                </div>
+                                <input th:value="${blog.title}" required type="text" id="title" name="title"
+                                       placeholder="Enter title Here" class="form-control" />
+                            </div>
+                            <!-- Blog description -->
+                            <div class="form-group mt-3">
+									<textarea th:text="${blog.description}" name="description" id="mytextarea"
+                                              class="form-control editor" rows="10"
+                                              placeholder="Enter Description here.."></textarea>
+                            </div>
+                            <!-- Blog symptoms -->
+                            <div class="form-group mt-3">
+									<textarea th:text="${blog.symptoms}" name="symptoms" id="symptoms"
+                                              class="form-control editor" rows="10"
+                                              placeholder="Enter Symptoms here.."></textarea>
+                            </div>
+                            <!-- Solution -->
+                            <div class="form-group mt-3">
+									<textarea th:text="${blog.solution}" name="solution" id="solution"
+                                              class="form-control editor" rows="10"
+                                              placeholder="Enter Solution here.."></textarea>
+                            </div>
+                            <!-- Type -->
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-align-left"></i>
+                                    </div>
+                                </div>
+                                <input th:value="${blog.type}" required type="text" id="type" name="type"
+                                       placeholder="Enter type Here" class="form-control" />
+                            </div>
+
+                            <!-- Video Link -->
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-link"></i>
+                                    </div>
+                                </div>
+                                <input th:value="${blog.videoLink}" required type="url" id="videoLink" name="videoLink"
+                                       placeholder="Enter Link Here" class="form-control" />
+                            </div>
+                            <!-- Button -->
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="btn bg-primary text-white text-uppercase"
+                                        type="submit">Update</button>
+                                <button class="btn btn-warning text-white text-uppercase"
+                                        type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '.editor'
+        });
+    </script>
+</section>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="card bg-light mt-5 col-md-6 text-center">
+                    <div th:if="${session.message}"
+                         th:classappend="${session.message.type}"
+                         class="alert alert-dismissible fade show" role="alert">
+                        <strong th:text="${session.message.content}"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <article class="card-body jus" style="max-width: 700px;">
+                        <h4 class="card-title mt-3">Create Account</h4>
+                        <p class="text-center">Get started with your free account</p>
+                        <p>
+                            <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+                        </p>
+                        <p class="divider-text">
+                            <span class="bg-light">OR</span>
+                        </p>
+                        <form th:action="@{/do_register}" method="post" th:object="${user}" enctype="multipart/form-data">
+                            <!-- Name field -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input th:value="${user.name}" name="name" class="form-control" placeholder="Full name" type="text">
+                            </div>
+                            <!-- Email field -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                </div>
+                                <input th:value="${user.email}" name="email" class="form-control" placeholder="Email address" type="email">
+                            </div>
+                            <!-- Phone field -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                </div>
+                                <input th:value="${user.phone}" name="phone" class="form-control" placeholder="Phone number" type="text">
+                            </div>
+                            <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fas fa-hand-holding-heart"></i> </span>
+                                </div>
+                                <input th:value="${user.blood_group}" name="blood_group" class="form-control" placeholder="Enter your blood group" type="text">
+                            </div>
+                            <!-- Address field -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-location-arrow"></i> </span>
+                                </div>
+                                <input th:value="${user.address}" name="address" class="form-control" placeholder="Your address" type="text">
+                            </div>
+                            <!-- Password field -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input name="password" th:value="${user.password}" class="form-control" placeholder="Your password" type="password">
+                            </div>
+                            <!-- Contact Image -->
+                            <div class="custom-file">
+                                <input class="form-control" type="file" name="profileImage" />
+                            </div>
+                            <!-- Signup Button -->
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                            </div>
+                            <!-- form-group// -->
+                            <p class="text-center">Have an account? <a href="" th:href="@{/login}">Log In</a> </p>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

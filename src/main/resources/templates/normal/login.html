@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<section>
+    <main class="main">
+        <div class="wrapper">
+            <div class="card">
+                <div class="container text-center d-inline-flex justify-content-center align-items-center align-top">
+                    <img src="" th:src="@{/image/lock.png}" alt="Lock" style="height: 80px; width: 80px;">
+                </div>
+                <div th:if="${param.error}" class="alert alert-danger">
+                    Invalid Username and Password
+                </div>
+
+                <form class="form" th:action="@{/dologin}" method="post">
+                    <div class="form-group">
+                        <input type="text" name="username" id="username" class="input-field" placeholder="Email address">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" class="input-field" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <a th:href="@{/forgot-password}" class="linktext">Forgot Password</a>
+                        <input type="submit" name="Login" class="input-submit" value="Login">
+                    </div>
+                </form>
+                <div class="line">
+                    <span class="line-bar"></span>
+                    <span class="line-text">Don't have an account?</span>
+                    <span class="line-bar"></span>
+                </div>
+                <div class="method">
+                    <div class="method-item">
+                        <a href="#" th:href="@{/signup}" class="btn-action">Signup</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<section>
+  <div class="container">
+    <div class="row flex-lg-nowrap">
+      <div class="col">
+        <div class="row flex-lg-nowrap">
+          <div class="col mb-3 mt-3">
+            <div class="e-panel card">
+              <div class="card-body">
+                <div class="e-table">
+                  <div class="table-responsive table-lg mt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                        <th class="align-top">#ID</th>
+                        <th class="max-width">Name</th>
+                        <th class="sortable">Phone</th>
+                        <th class="sortable">Zilla</th>
+                        <th class="sortable">Thana</th>
+                        <th>Actions</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="a :${ambulances}">
+                        <td th:text="${a.id}" class="text-nowrap align-middle">Adam Cotter</td>
+                        <td th:text="${a.name}" class="text-nowrap align-middle">Adam Cotter</td>
+                        <td th:text="${a.phone}" class="text-nowrap align-middle"></td>
+                        <td th:text="${a.zilla}" class="text-nowrap align-middle"></td>
+                        <td th:text="${a.thana}" class="text-nowrap align-middle"></td>
+                        <td class="text-center align-middle">
+                          <div class="btn-group align-top">
+                            <a th:href="@{'/admin/edit-ambulance/'+${a.id}}" class="btn btn-sm btn-outline-secondary badge" type="button"><i class="fa fa-edit"></i></a>
+                            <a th:href="@{'/admin/delete-ambulance/'+${a.id}}" class="btn btn-sm btn-outline-secondary badge" type="button"><i class="fa fa-trash"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination">
+                        <li th:if="${currentPage != 0}" class="page-item">
+                          <a class="page-link" th:href="@{'/admin/ambulance/'+${currentPage - 1}}" href="#">Previous</a>
+                        </li>
+
+                        <li th:classappend="${currentPage== i - 1?'active':''}"
+                            th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                          <a class="page-link" th:href="@{'/admin/ambulance/'+${i - 1}}" href="#">
+                            <span th:text="${i}"></span>
+                          </a>
+                        </li>
+
+                        <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                          <a class="page-link" th:href="@{'/admin/ambulance/'+${currentPage + 1}}" href="#">Next</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-4 mt-3">
+            <div class="card">
+              <div class="body search">
+                <form action="">
+                  <div class="input-group m-b-0">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input th:value="${keyword}"  name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card card-white grid-margin">
+              <div class="card-heading clearfix text-center">
+                <h4 class="card-title">Add Ambulance</h4>
+                <form th:action="@{/admin/process-ambulance}" th:object="${ambulances}" method="post" enctype="multipart/form-data">
+                  <!-- name -->
+                  <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fab fa-adn"></i>
+                      </div>
+                    </div>
+                    <input required type="text" id="name" name="name"
+                           placeholder="Enter name here" class="form-control" />
+                  </div>
+                  <!-- phone -->
+                  <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fa fa-phone"></i>
+                      </div>
+                    </div>
+                    <input required type="text" id="phone" name="phone"
+                           placeholder="Enter phone number Here" class="form-control" />
+                  </div>
+                  <!-- Zilla -->
+                  <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fa fa-address-book"></i>
+                      </div>
+                    </div>
+                    <input required type="text" id="zilla" name="zilla"
+                           placeholder="Enter Zilla Here" class="form-control" />
+                  </div>
+                  <!-- Thana -->
+                  <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fa fa-address-book"></i>
+                      </div>
+                    </div>
+                    <input required type="text" id="thana" name="thana"
+                           placeholder="Enter Thana Here" class="form-control" />
+                  </div>
+
+                  <!-- Button -->
+                  <div class="d-grid gap-2 mt-3">
+                    <button class="btn bg-primary text-white text-uppercase"
+                            type="submit">Add</button>
+                    <button class="btn btn-warning text-white text-uppercase"
+                            type="reset">Reset</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card card-white grid-margin">
+              <div class="card-heading clearfix">
+                <h4 class="card-title">Some Info</h4>
+              </div>
+              <div class="card-body">
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis architecto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

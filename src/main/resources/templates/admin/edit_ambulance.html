@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Hospital</title>
+</head>
+<body>
+<section>
+  <div class="container bootstrap snippets bootdey mt-5">
+    <div class="row ng-scope">
+      <div class="col-md-4 mt-3">
+        <div class="card card-white grid-margin">
+          <div class="card-heading clearfix text-center">
+            <div>
+              <h1 style="color: deeppink"><i class="fa fa-adn"></i></h1>
+              <h5 th:text="${ambulance.name}"></h5>
+            </div>
+            <hr>
+            <!-- User Information Table -->
+            <div class="table-responsive mt-5">
+              <table class="table table-user-information">
+                <tbody>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-user  text-primary"></span>Phone</strong>
+                  </td>
+                  <td th:text="${ambulance.phone}" class="text-primary"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-cloud text-primary"></span>Zilla</strong>
+                  </td>
+                  <td th:text="${ambulance.zilla}" class="text-primary"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>Thana</strong>
+                  </td>
+                  <td th:text="${ambulance.thana}" class="text-primary"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- End User Information Table -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 mt-3">
+        <div class="card card-white grid-margin">
+          <div class="card-heading clearfix text-center">
+            <h4 class="card-title">Update Ambulance #<span th:text="${ambulance.id}"></span></h4>
+            <form th:action="@{/admin/update-ambulance/{id}(id=${ambulance.id})}" th:object="${ambulance}" method="post" enctype="multipart/form-data">
+              <!-- name -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fab fa-adn"></i>
+                  </div>
+                </div>
+                <input th:value="${ambulance.name}" required type="text" id="name" name="name"
+                       placeholder="Enter name here" class="form-control" />
+              </div>
+              <!-- phone -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                </div>
+                <input th:value="${ambulance.phone}" required type="text" id="phone" name="phone"
+                       placeholder="Enter phone number Here" class="form-control" />
+              </div>
+              <!-- Zilla -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-address-book"></i>
+                  </div>
+                </div>
+                <input th:value="${ambulance.zilla}" required type="text" id="zilla" name="zilla"
+                       placeholder="Enter Zilla Here" class="form-control" />
+              </div>
+              <!-- Thana -->
+              <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-address-book"></i>
+                  </div>
+                </div>
+                <input th:value="${ambulance.thana}" required type="text" id="thana" name="thana"
+                       placeholder="Enter Thana Here" class="form-control" />
+              </div>
+
+              <!-- Button -->
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn bg-primary text-white text-uppercase"
+                        type="submit">Add</button>
+                <button class="btn btn-warning text-white text-uppercase"
+                        type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
+</section>
+</body>
+</html>
