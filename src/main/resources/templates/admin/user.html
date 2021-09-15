@@ -10,7 +10,7 @@
 </head>
 <body>
 <section>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row flex-lg-nowrap">
             <div class="col">
                 <div class="row flex-lg-nowrap">
@@ -34,7 +34,6 @@
                                         <table class="table table-bordered">
                                             <thead>
                                             <tr>
-                                                <th class="align-top">#ID</th>
                                                 <th>Photo</th>
                                                 <th class="max-width">Name</th>
                                                 <th class="sortable">Email</th>
@@ -44,10 +43,9 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="u :${users}">
-                                                <td th:text="${u.id}" class="text-nowrap align-middle">Adam Cotter</td>
                                                 <td class="align-middle text-center">
-                                                    <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;">
-                                                        <img th:src="@{'/image/'+${u.image}}" src="" alt="">
+                                                    <div class="bg-light d-inline-flex justify-content-center align-items-center align-top">
+                                                        <img th:src="@{'/image/'+${u.image}}" src="" alt="" style="width: 35px; height: 35px; border-radius: 3px; object-fit: cover">
                                                     </div>
                                                 </td>
                                                 <td th:text="${u.name}" class="text-nowrap align-middle">Adam Cotter</td>

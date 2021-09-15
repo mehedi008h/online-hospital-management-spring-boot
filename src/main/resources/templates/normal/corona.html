@@ -10,33 +10,7 @@
 </head>
 <body>
 <section>
-    <div class="container mt-3">
-        <div class="jumbotron">
-            <h3>This application lists the current number of cases reported across the globe</h3>
-            <h1 class="display-4" th:text="${totalReportedCases}"></h1>
-            <p class="lead">Total cases reported as of today</p>
-            <hr class="my-4">
-            <p>
-                <span>New cases reported since previous day:</span>
-                <span th:text="${totalNewCases}"></span>
-            </p>
 
-        </div>
-        <table class="table table-striped table-hover">
-            <tr>
-                <th>STATE</th>
-                <th>COUNTRY</th>
-                <th>TOTAL CASES</th>
-                <th>Changes since last day</th>
-            </tr>
-            <tr th:each="locationStates : ${locationStats}">
-                <td th:text="${locationStates.state}"></td>
-                <td th:text="${locationStates.country}"></td>
-                <td th:text="${locationStates.latestTotalCases}"></td>
-                <td th:text="${locationStates.diffFromPrevDay}">0</td>
-            </tr>
-        </table>
-    </div>
 </section>
 </body>
 </html>

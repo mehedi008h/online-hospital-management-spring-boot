@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="user/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<section>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8 col-md-12 left-box mt-4">
+
+        <!-- User profile -->
+        <div class="card card-white">
+          <div class="body widget">
+            <h4 class="panel-title">User profile</h4>
+          </div>
+          <hr>
+          <div class="body widget">
+            <div class="profile__avatar">
+              <img th:src="@{'/image/'+${member.image}}" src="" alt="..." style="object-fit: cover">
+            </div>
+            <div class="profile__header">
+              <h4 th:text="${member.name}">Richard Roe</h4>
+              <p th:utext="${member.description}" class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Latest posts -->
+        <div class="card card-white">
+          <div class="body widget">
+            <h4 class="panel-title">Recent posts</h4>
+          </div>
+          <hr>
+          <div class="body widget">
+            <div class="profile__comments">
+              <div th:each="p :${member.bloodPosts}" class="profile-comments__item">
+                <div class="profile-comments__controls">
+                  <a th:href="@{'/user/blood-post-details/'+${p.id}}" href="#"><i class="far fa-eye"></i></a>
+                </div>
+                <div class="profile-comments__avatar">
+                  <img th:src="@{'/image/'+${member.image}}" src="" alt="..." style="object-fit: cover">
+                </div>
+                <div class="profile-comments__body">
+                  <h5 th:text="${p.title}" class="profile-comments__sender">
+                    Richard Roe <small>2 hours ago</small>
+                  </h5>
+                  <div class="profile-comments__content">
+                    <p th:utext="${p.description}"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 right-box mt-4">
+        <!-- User info -->
+        <div class="card card-white">
+          <div class="body widget">
+            <h4>User info</h4>
+          </div>
+          <hr>
+          <div class="body widget">
+            <table class="table profile__table">
+              <tbody>
+              <tr>
+                <th><strong>Work</strong></th>
+                <td th:text="${member.work}">United States</td>
+              </tr>
+              <tr>
+                <th><strong>Blood Group</strong></th>
+                <td th:text="${member.blood_group}">United States</td>
+              </tr>
+              <tr>
+                <th><strong>Email</strong></th>
+                <td th:text="${member.email}">Simpleqode.com</td>
+              </tr>
+              <tr>
+                <th><strong>Phone</strong></th>
+                <td th:text="${member.phone}">Front-end developer</td>
+              </tr>
+              <tr>
+                <th><strong>Location</strong></th>
+                <td th:text="${member.address}">United States</td>
+              </tr>
+              <tr>
+                <th><strong>Birth Date</strong></th>
+                <td th:text="${member.bod}">Front-end developer</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

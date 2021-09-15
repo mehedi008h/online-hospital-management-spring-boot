@@ -10,11 +10,11 @@
 </head>
 <body>
 <section>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row flex-lg-nowrap">
             <div class="col">
                 <div class="row flex-lg-nowrap">
-                    <div class="col mb-3 mt-3">
+                    <div class="col mb-3 mt-4">
                         <div class="e-panel card">
                             <div class="card-body">
                                 <div class="body search">
@@ -31,8 +31,7 @@
                                     <div class="table-responsive table-lg mt-3">
                                         <table class="table table-bordered">
                                             <thead>
-                                            <tr>
-                                                <th class="align-top">#ID</th>
+                                            <tr>                                               
                                                 <th class="max-width">Name</th>
                                                 <th class="sortable">Phone</th>
                                                 <th class="sortable">Zilla</th>
@@ -40,8 +39,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="a :${ambulances}">
-                                                <td th:text="${a.id}" class="text-nowrap align-middle">Adam Cotter</td>
+                                            <tr th:each="a :${ambulances}">                     
                                                 <td th:text="${a.name}" class="text-nowrap align-middle">Adam Cotter</td>
                                                 <td th:text="${a.phone}" class="text-nowrap align-middle"></td>
                                                 <td th:text="${a.zilla}" class="text-nowrap align-middle"></td>

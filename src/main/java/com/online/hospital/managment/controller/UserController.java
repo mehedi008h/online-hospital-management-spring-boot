@@ -2,16 +2,22 @@ package com.online.hospital.managment.controller;
 
 import com.online.hospital.managment.helper.Message;
 import com.online.hospital.managment.model.*;
+import com.online.hospital.managment.model.comment.BlogComment;
 import com.online.hospital.managment.repository.BlogRepository;
 import com.online.hospital.managment.repository.BloodPostRepository;
+import com.online.hospital.managment.repository.DonerRepository;
+import com.online.hospital.managment.repository.HospitalRepository;
 import com.online.hospital.managment.repository.UserRepository;
+import com.online.hospital.managment.repository.comment.BlogCommentRepository;
 import com.online.hospital.managment.service.*;
+
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -61,6 +67,15 @@ public class UserController {
     @Autowired
     private AmbulanceService ambulanceService;
 
+    @Autowired
+    private HospitalRepository hospitalRepository;
+    
+    @Autowired
+    private BlogCommentRepository blogCommentRepository;
+    
+    @Autowired
+    private DonerRepository donerRepository;
+
     @ModelAttribute
     public void addCommonData(Model model, Principal principal)
     {
@@ -83,12 +98,8 @@ public class UserController {
     @RequestMapping("/profile")
     public String profile(Model model,Principal principal)
     {
-        String username = principal.getName();
-        User user = this.userRepository.getUserByUserName(username);
-        List<BloodPost> posts = this.bloodPostRepository.findBloodPostByUser(user.getId());
         model.addAttribute("title","Profile");
-        model.addAttribute("posts", posts);
-        return "user/profile";
+        return "user/profile-details";
     }
 
     //update user
@@ -130,6 +141,17 @@ public class UserController {
         }
         return "redirect:/user/update-profile";
     }
+    
+    // blood donate request
+    @GetMapping("/blood-donate-request")
+    public String bloodDonateRequest(Model model, Principal principal) {
+    	model.addAttribute("title", "Blood Donate Request - Online Hospital management");
+    	String username = principal.getName();
+        User currentUser = this.userRepository.getUserByUserName(username);
+        List<Doner> doners = currentUser.getDoners();
+        model.addAttribute("doners", doners);
+        return "user/blood_donate_request";
+    }
 
     //change password
     @GetMapping("/password")
@@ -155,7 +177,7 @@ public class UserController {
         else
         {
             session.setAttribute("message", new Message("Wrong!!Old Password", "danger"));
-            return "redirect:/user/changepassword";
+            return "redirect:/user/password";
         }
         return "redirect:/user/index";
     }
@@ -165,7 +187,8 @@ public class UserController {
     public String blood(@PathVariable("page") Integer page, Model model,@Param("keyword") String keyword)
     {
         model.addAttribute("title","Blood - Online Hospital Management");
-        Pageable pageable = PageRequest.of(page, 5);
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 5, sort);
         Page<BloodPost> posts = bloodPostService.listAll(keyword, pageable);
         model.addAttribute("posts",posts);
         model.addAttribute("keyword", keyword);
@@ -212,7 +235,7 @@ public class UserController {
         return "/user/edit_bloodpost";
     }
 
-    //process edit blog
+    //process edit blood post
     @PostMapping("/update/{id}")
     public String processUpdatePost(@PathVariable("id") Integer id,@ModelAttribute("post") BloodPost post,Principal principal,HttpSession session)
     {
@@ -221,6 +244,20 @@ public class UserController {
         bloodPostRepository.save(post);
         session.setAttribute("message", new Message("Your post is updated..", "success"));
         return "redirect:/user/update-post/"+post.getId();
+    }
+    
+  //process edit blog post
+    @PostMapping("/process-doner/{id}")
+    public String processDonateBlood(@PathVariable("id") Integer id,@ModelAttribute("doner") Doner doner,Principal principal,HttpSession session)
+    {
+        User user = this.userRepository.getUserByUserName(principal.getName());
+        doner.setUser(user);
+        BloodPost bloodPost = this.bloodPostRepository.getBloodPostByBloodPostId(id);
+        doner.setBloodPost(bloodPost);
+        doner.setApply(true);
+        donerRepository.save(doner);
+        session.setAttribute("message", new Message("Your comment is added", "success"));
+        return "redirect:/user/blood-post-details/"+doner.getId();
     }
 
     // Delete blood post
@@ -235,6 +272,22 @@ public class UserController {
         session.setAttribute("message", new Message("Post deleted successfully..", "success"));
         return "redirect:/user/profile";
     }
+    
+  //my blood post
+    @RequestMapping("/my-blood-post/{page}")
+    public String myBloodPost(@PathVariable("page") Integer page, Model model,Principal principal)
+    {
+        String username = principal.getName();
+        User user = this.userRepository.getUserByUserName(username);
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page,5,sort);
+        Page<BloodPost> posts = this.bloodPostRepository.findBloodPostByUser(user.getId(),pageable);
+        model.addAttribute("title","My Blood Post || Online Hospital Management");
+        model.addAttribute("posts", posts);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPage", posts.getTotalPages());
+        return "user/my-blood-post";
+    }
 
 
     //user
@@ -242,7 +295,8 @@ public class UserController {
     public String user(@PathVariable("page") Integer page, Model model,@Param("keyword") String keyword)
     {
         model.addAttribute("title","User - Online Hospital Management");
-        Pageable pageable = PageRequest.of(page, 5);
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 5, sort);
         Page<User> users = userService.listAll(keyword, pageable);
         model.addAttribute("users", users);
         model.addAttribute("keyword", keyword);
@@ -251,17 +305,28 @@ public class UserController {
         return "user/user";
     }
 
+    // show member details
+    @RequestMapping("/member-details/{id}")
+    public String memberDetails(@PathVariable("id") Integer id, Model model)
+    {
+        User member = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("member",member);
+        return "/user/member_details";
+    }
+
     // show blog
     @RequestMapping("/blog/{page}")
     public String blog(@PathVariable("page") Integer page, Model model, @Param("keyword") String keyword)
     {
         model.addAttribute("title","Blog - Online Hospital Management");
-        Pageable pageable = PageRequest.of(page, 5);
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 5, sort);
         Page<Blog> blogs = blogService.listAll(keyword, pageable);
         model.addAttribute("blogs",blogs);
         model.addAttribute("keyword", keyword);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPage", blogs.getTotalPages());
+        model.addAttribute("totalComment", blogs.getTotalPages());
         return "user/blog";
     }
 
@@ -270,8 +335,23 @@ public class UserController {
     public String blogDetails(@PathVariable("id") Integer id, Model model)
     {
         Blog blog = blogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        List<BlogComment> blogComment = blog.getBlogComment();
         model.addAttribute("blog",blog);
+        model.addAttribute("blogComment",blogComment);
         return "/user/blog_details";
+    }
+    
+    //process edit blog post
+    @PostMapping("/blogPost-Comment/{id}")
+    public String blogPostComment(@PathVariable("id") Integer id,@ModelAttribute("comment") BlogComment comment,Principal principal,HttpSession session)
+    {
+        User user = this.userRepository.getUserByUserName(principal.getName());
+        comment.setUser(user);
+        Blog blog = this.blogRepository.getBlogByBlogId(id);
+        comment.setBlog(blog);
+        blogCommentRepository.save(comment);
+        session.setAttribute("message", new Message("Your comment is added", "success"));
+        return "redirect:/user/blog-details/"+comment.getId();
     }
 
     // Hospital Service
@@ -279,7 +359,8 @@ public class UserController {
     public String hospital(@PathVariable("page") Integer page, Model model,@Param("keyword") String keyword)
     {
         model.addAttribute("title","Hospital - Online Hospital Management");
-        Pageable pageable = PageRequest.of(page, 5);
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 5, sort);
         Page<Hospital> hospitals = hospitalService.listAll(keyword,pageable);
         model.addAttribute("hospitals",hospitals);
         model.addAttribute("keyword", keyword);
@@ -288,12 +369,26 @@ public class UserController {
         return "/user/hospital";
     }
 
+    // show hospital details
+    @RequestMapping("/hospital-details/{id}")
+    public String hospitalDetails(@PathVariable("id") Integer id, Model model)
+    {
+        Hospital hospital = hospitalRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(0,10,sort);
+        Page<Hospital> hospitals = this.hospitalRepository.findAll(pageable);
+        model.addAttribute("hospital",hospital);
+        model.addAttribute("hospitals", hospitals);
+        return "/user/hospital_details";
+    }
+
     // Ambulance Service
     @RequestMapping("/ambulance/{page}")
     public String ambulance(@PathVariable("page") Integer page, Model model,@Param("keyword") String keyword)
     {
         model.addAttribute("title","Ambulance - Online Hospital Management");
-        Pageable pageable = PageRequest.of(page, 10);
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 10, sort);
         Page<Ambulance> ambulances = ambulanceService.listAll(keyword, pageable);
         model.addAttribute("ambulances",ambulances);
         model.addAttribute("keyword", keyword);

@@ -18,158 +18,89 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+            crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <link rel="stylesheet" th:href="@{/css/signup.css}">
-    <link rel="stylesheet" th:href="@{/css/navbar.css}">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/forgot-email.css}">
     <title th:text="${title}">Base html</title>
 </head>
 <body>
     <!-- ======================================Navigation Bar================================================= -->
-    <header>
-        <div class="container1">
-            <input type="checkbox" name="" id="check">
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <img class="mr-2" src="" th:src="@{/image/bg.jpg}" alt="" style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%; border: 2px solid pink;" />
+            <a class="navbar-brand" href="#">Online Hospital Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase">
+                    <li class="nav-item">
+                        <a th:href="@{/index}" class="nav-link" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Service
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase">
+                    <li class="nav-item"><a th:href="@{/login}" class="nav-link btn btn-outline-warning" href="#"
+                                            tabindex="-1" style="border-radius: 50px; width: 100%; color: white;">Login</a></li>
 
-            <div class="logo-container">
-                <h3 class="logo">Smart</h3>
-            </div>
-
-            <div class="nav-btn">
-                <div class="nav-links">
-                    <ul>
-                        <li class="nav-link" style="--i: .6s">
-                            <a th:href="@{/}">Home</a>
-                        </li>
-                        <li class="nav-link" style="--i: .85s">
-                            <a href="#">Menu<i class="fas fa-caret-down"></i></a>
-                            <div class="dropdown">
-                                <ul>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 1</a>
-                                    </li>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 2</a>
-                                    </li>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 3<i class="fas fa-caret-down"></i></a>
-                                        <div class="dropdown second">
-                                            <ul>
-                                                <li class="dropdown-link">
-                                                    <a href="#">Link 1</a>
-                                                </li>
-                                                <li class="dropdown-link">
-                                                    <a href="#">Link 2</a>
-                                                </li>
-                                                <li class="dropdown-link">
-                                                    <a href="#">Link 3</a>
-                                                </li>
-                                                <li class="dropdown-link">
-                                                    <a href="#">More<i class="fas fa-caret-down"></i></a>
-                                                    <div class="dropdown second">
-                                                        <ul>
-                                                            <li class="dropdown-link">
-                                                                <a href="#">Link 1</a>
-                                                            </li>
-                                                            <li class="dropdown-link">
-                                                                <a href="#">Link 2</a>
-                                                            </li>
-                                                            <li class="dropdown-link">
-                                                                <a href="#">Link 3</a>
-                                                            </li>
-                                                            <div class="arrow"></div>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <div class="arrow"></div>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 4</a>
-                                    </li>
-                                    <div class="arrow"></div>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-link" style="--i: 1.1s">
-                            <a href="#">Services<i class="fas fa-caret-down"></i></a>
-                            <div class="dropdown">
-                                <ul>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 1</a>
-                                    </li>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 2</a>
-                                    </li>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 3<i class="fas fa-caret-down"></i></a>
-                                        <div class="dropdown second">
-                                            <ul>
-                                                <li class="dropdown-link">
-                                                    <a href="#">Link 1</a>
-                                                </li>
-                                                <li class="dropdown-link">
-                                                    <a href="#">Link 2</a>
-                                                </li>
-                                                <li class="dropdown-link">
-                                                    <a href="#">Link 3</a>
-                                                </li>
-                                                <li class="dropdown-link">
-                                                    <a href="#">More<i class="fas fa-caret-down"></i></a>
-                                                    <div class="dropdown second">
-                                                        <ul>
-                                                            <li class="dropdown-link">
-                                                                <a href="#">Link 1</a>
-                                                            </li>
-                                                            <li class="dropdown-link">
-                                                                <a href="#">Link 2</a>
-                                                            </li>
-                                                            <li class="dropdown-link">
-                                                                <a href="#">Link 3</a>
-                                                            </li>
-                                                            <div class="arrow"></div>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <div class="arrow"></div>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown-link">
-                                        <a href="#">Link 4</a>
-                                    </li>
-                                    <div class="arrow"></div>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-link" style="--i: 1.35s">
-                            <a href="#">About</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="log-sign" style="--i: 1.8s">
-                    <a th:href="@{/login}" class="btn transparent">Log in</a>
-                    <a th:href="@{/signup}" class="btn solid">Sign up</a>
-                </div>
-            </div>
-
-            <div class="hamburger-menu-container">
-                <div class="hamburger-menu">
-                    <div></div>
-                </div>
+                    <li class="nav-item" id="log1"><a th:href="@{/signup}" class="nav-link btn btn-success ml-2" href="#"
+                                                      tabindex="-1" style="border-radius: 50px; width: 100px; color: white;">Signup</a></li>
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- ======================================End navbar================================================= -->
 
 <div th:replace="${content}"></div>
-<!--Footer-->
+    <!-- Footer -->
+    <footer class="text-center text-white mt-5" style="background-color: #0a4275;">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: CTA -->
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Register for free</span>
+                    <button type="button" class="btn btn-outline-light btn-rounded">
+                        Sign up!
+                    </button>
+                </p>
+            </section>
+            <!-- Section: CTA -->
+        </div>
+        <!-- Grid container -->
 
-<!--End Footer-->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">Online Hospital Management</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

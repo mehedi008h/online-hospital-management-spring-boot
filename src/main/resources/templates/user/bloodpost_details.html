@@ -1,281 +1,290 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="user/base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body>
-<section>
-  <div class="blog-single gray-bg">
-    <div class="container">
-      <div class="row align-items-start">
-        <div class="col-lg-8 m-5px-tb">
-          <article class="article">
-            <div class="article-title">
-              <h2 th:text="${bloodPost.title}"></h2>
-              <div class="media">
-                <div class="avatar">
-                  <img th:src="@{'/image/'+${bloodPost.user.image}}" src="" title="" alt="" style="object-fit: cover">
-                </div>
-                <div class="media-body">
-                  <label th:text="${bloodPost.user.name}">Rachel Roth</label>
-                  <span>26 FEB 2020</span>
-                </div>
-              </div>
-            </div>
-            <div class="article-content">
-              <p th:utext="${bloodPost.description}"></p>
-              <!-- User Information Table -->
-              <div class="table-responsive mt-5">
-                <table class="table table-user-information">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Blood Group</strong>
-                    </td>
-                    <td th:text="${bloodPost.blood_group}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Email</strong>
-                    </td>
-                    <td th:text="${bloodPost.email}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-user  text-primary"></span>Phone</strong>
-                    </td>
-                    <td th:text="${bloodPost.phone}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-cloud text-primary"></span>Zilla</strong>
-                    </td>
-                    <td th:text="${bloodPost.zilla}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>Thana</strong>
-                    </td>
-                    <td th:text="${bloodPost.thana}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>BOD</strong>
-                    </td>
-                    <td th:text="${bloodPost.user.bod}" class="text-primary"></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- End User Information Table -->
-            </div>
-            <div class="nav tag-cloud">
-              <a href="#">Design</a>
-              <a href="#">Development</a>
-              <a href="#">Travel</a>
-              <a href="#">Web Design</a>
-              <a href="#">Marketing</a>
-              <a href="#">Research</a>
-              <a href="#">Managment</a>
-            </div>
-          </article>
-          <div class="contact-form article-comment">
-            <h4>Leave a Reply</h4>
-            <form id="contact-form" method="POST">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="send">
-                    <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-lg-4 m-15px-tb blog-aside">
-          <!-- Author -->
-          <div class="widget widget-author">
-            <div class="widget-title">
-              <h3>Author</h3>
-            </div>
-            <div class="widget-body">
-              <div class="media align-items-center">
-                <div class="avatar">
-                  <img th:src="@{'/image/'+${bloodPost.user.image}}"  title="" alt="" src="" style="object-fit: cover">
-                </div>
-                <div class="media-body">
-                  <h6>Hello, I'm<br th:text="${bloodPost.user.name}"></h6>
-                </div>
-              </div>
-              <p th:utext="${bloodPost.user.description}"></p>
-              <!-- User Information Table -->
-              <div class="table-responsive mt-5">
-                <table class="table table-user-information">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Work</strong>
-                    </td>
-                    <td th:text="${bloodPost.user.work}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Email</strong>
-                    </td>
-                    <td th:text="${bloodPost.user.email}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-user  text-primary"></span>Phone</strong>
-                    </td>
-                    <td th:text="${bloodPost.user.phone}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-cloud text-primary"></span>Address</strong>
-                    </td>
-                    <td th:text="${bloodPost.user.address}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>Blood Group</strong>
-                    </td>
-                    <td th:text="${bloodPost.user.blood_group}" class="text-primary"></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>BOD</strong>
-                    </td>
-                    <td th:text="${bloodPost.user.bod}" class="text-primary"></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- End User Information Table -->
-            </div>
-          </div>
-          <!-- End Author -->
-          <!-- Trending Post -->
-          <div class="widget widget-post">
-            <div class="widget-title">
-              <h3>Trending Now</h3>
-            </div>
-            <div class="widget-body">
 
+<body>
+  <section>
+    <div class="blog-single gray-bg">
+      <div class="container mt-5">
+        <div class="row align-items-start">
+          <div class="col-lg-8 m-5px-tb">
+            <article class="article">
+              <div class="article-title">
+                <h2 th:text="${bloodPost.title}"></h2>
+              </div>
+              <div class="article-content">
+                <p th:utext="${bloodPost.description}"></p>
+                <!-- User Information Table -->
+                <div class="table-responsive mt-5">
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Blood Group</strong>
+                        </td>
+                        <td th:text="${bloodPost.blood_group}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Email</strong>
+                        </td>
+                        <td th:text="${bloodPost.email}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-user  text-primary"></span>Phone</strong>
+                        </td>
+                        <td th:text="${bloodPost.phone}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-cloud text-primary"></span>Zilla</strong>
+                        </td>
+                        <td th:text="${bloodPost.zilla}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>Thana</strong>
+                        </td>
+                        <td th:text="${bloodPost.thana}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>BOD</strong>
+                        </td>
+                        <td th:text="${bloodPost.user.bod}" class="text-primary"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End User Information Table -->
+              </div>
+              <div class="nav tag-cloud ps-3">
+                <h5>You want to donate blood</h5>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal">
+                  Apply
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form th:action="@{/user/process-doner/{id}(id=${bloodPost.id})}" method="post">
+                          <!-- Title -->
+                          <div class="input-group mt-1">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <i class="fas fa-heading"></i>
+                              </div>
+                            </div>
+                            <input required type="text" id="hospitalName" name="hospitalName"
+                              placeholder="Enter title Here" class="form-control" />
+                          </div>
+                          <!-- donate date  -->
+                          <div class="input-group mt-1">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <i class="fas fa-heading"></i>
+                              </div>
+                            </div>
+                            <input required type="date" id="donateDate" name="donateDate" placeholder="Enter title Here"
+                              class="form-control" />
+                          </div>
+                          <!-- donate date  -->
+                          <div class="input-group mt-1">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <i class="fas fa-heading"></i>
+                              </div>
+                            </div>
+                            <input required type="date" id="lastBDDate" name="lastBDDate" placeholder="Enter title Here"
+                              class="form-control" />
+                          </div>
+                          <!-- donate date  -->
+                          <div class="input-group mt-1">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <i class="fas fa-heading"></i>
+                              </div>
+                            </div>
+                            <input required type="text" id="problem" name="problem" placeholder="Enter title Here"
+                              class="form-control" />
+                          </div>
+                          <!-- donate date  -->
+                          <div class="input-group mt-1">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <i class="fas fa-heading"></i>
+                              </div>
+                            </div>
+                            <input required type="text" id="location" name="location" placeholder="Enter title Here"
+                              class="form-control" />
+                          </div>
+                          <!-- Button -->
+                          <div class="d-flex mt-3">
+                            <button class="btn bg-primary text-white text-uppercase btn-sm" type="submit">Post</button>
+                            <button type="button" class="btn btn-secondary ms-3 btn-sm"
+                              data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <div class="contact-form article-comment">
+              <h4>Leave a Reply</h4>
+              <div>
+                <form method="post" action="">
+                  <div class="input-group flex-nowrap">
+                    <input type="text" class="form-control ps-3" name="text" placeholder="Write a comment ..."
+                      aria-label="Username" aria-describedby="addon-wrapping">
+                    <button class="btn btn-primary text-white" type="submit">Comment</button>
+                  </div>
+                </form>
+              </div>
+              <div>
+                <div class="d-flex align-items-center">
+                  <img
+                    style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid palevioletred;"
+                    title="" alt="">
+                  <h5 class="ml-3 p-2 bg-light rounded text-dark mt-1 border w-100">
+                    bhbcv
+                  </h5>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- End Trending Post -->
-          <!-- Latest Post -->
-          <div class="widget widget-latest-post">
-            <div class="widget-title">
-              <h3>Latest Post</h3>
-            </div>
-            <div class="widget-body">
-              <div class="latest-post-aside media">
-                <div class="lpa-left media-body">
-                  <div class="lpa-title">
-                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                  </div>
-                  <div class="lpa-meta">
-                    <a class="name" href="#">
-                      Rachel Roth
-                    </a>
-                    <a class="date" href="#">
-                      26 FEB 2020
-                    </a>
-                  </div>
-                </div>
-                <div class="lpa-right">
-                  <a href="#">
-                    <img src="https://via.placeholder.com/400x200/FFB6C1/000000" title="" alt="">
-                  </a>
-                </div>
+
+          <div class="col-lg-4 m-15px-tb blog-aside">
+            <!-- Author -->
+            <div class="widget widget-author">
+              <div class="widget-title">
+                <h3>Author</h3>
               </div>
-              <div class="latest-post-aside media">
-                <div class="lpa-left media-body">
-                  <div class="lpa-title">
-                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
+              <div class="widget-body">
+                <div class="media align-items-center">
+                  <div class="avatar">
+                    <img th:src="@{'/image/'+${bloodPost.user.image}}" title="" alt="" src="" style="object-fit: cover">
                   </div>
-                  <div class="lpa-meta">
-                    <a class="name" href="#">
-                      Rachel Roth
-                    </a>
-                    <a class="date" href="#">
-                      26 FEB 2020
-                    </a>
+                  <div class="media-body">
+                    <h6>Hello, I'm<br th:text="${bloodPost.user.name}"></h6>
                   </div>
                 </div>
-                <div class="lpa-right">
-                  <a href="#">
-                    <img src="https://via.placeholder.com/400x200/FFB6C1/000000" title="" alt="">
-                  </a>
+                <p th:utext="${bloodPost.user.description}"></p>
+                <!-- User Information Table -->
+                <div class="table-responsive mt-5">
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Work</strong>
+                        </td>
+                        <td th:text="${bloodPost.user.work}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-asterisk text-primary"></span>Email</strong>
+                        </td>
+                        <td th:text="${bloodPost.user.email}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-user  text-primary"></span>Phone</strong>
+                        </td>
+                        <td th:text="${bloodPost.user.phone}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-cloud text-primary"></span>Address</strong>
+                        </td>
+                        <td th:text="${bloodPost.user.address}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>Blood Group</strong>
+                        </td>
+                        <td th:text="${bloodPost.user.blood_group}" class="text-primary"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong><span class="glyphicon glyphicon-bookmark text-primary"></span>BOD</strong>
+                        </td>
+                        <td th:text="${bloodPost.user.bod}" class="text-primary"></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-              </div>
-              <div class="latest-post-aside media">
-                <div class="lpa-left media-body">
-                  <div class="lpa-title">
-                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                  </div>
-                  <div class="lpa-meta">
-                    <a class="name" href="#">
-                      Rachel Roth
-                    </a>
-                    <a class="date" href="#">
-                      26 FEB 2020
-                    </a>
-                  </div>
-                </div>
-                <div class="lpa-right">
-                  <a href="#">
-                    <img src="https://via.placeholder.com/400x200/FFB6C1/000000" title="" alt="">
-                  </a>
-                </div>
+                <!-- End User Information Table -->
               </div>
             </div>
+            <!-- End Author -->
+            <!-- Trending Post -->
+            <div class="widget widget-post">
+              <div class="widget-title">
+                <h3>Trending Now</h3>
+              </div>
+              <div class="widget-body">
+                <div class="d-flex justify-content-between align-items-center p-2 bg-light rounded">
+                  <img th:src="@{'/image/'+${bloodPost.user.image}}"
+                    style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover; border: 2px solid salmon;"
+                    alt="">
+                  <h5>Name</h5>
+                  <a type="button" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- End Trending Post -->
+            <!-- Latest Post -->
+            <div class="widget widget-latest-post">
+              <div class="widget-title">
+                <h3>Latest Post</h3>
+              </div>
+              <div class="widget-body">
+                <div class="latest-post-aside media">
+                  <div class="lpa-left media-body">
+                    <div class="lpa-title">
+                      <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
+                    </div>
+                    <div class="lpa-meta">
+                      <a class="name" href="#">
+                        Rachel Roth
+                      </a>
+                      <a class="date" href="#">
+                        26 FEB 2020
+                      </a>
+                    </div>
+                  </div>
+                  <div class="lpa-right">
+                    <a href="#">
+                      <img src="https://via.placeholder.com/400x200/FFB6C1/000000" title="" alt="">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Latest Post -->
           </div>
-          <!-- End Latest Post -->
-          <!-- widget Tags -->
-          <div class="widget widget-tags">
-            <div class="widget-title">
-              <h3>Latest Tags</h3>
-            </div>
-            <div class="widget-body">
-              <div class="nav tag-cloud">
-                <a href="#">Design</a>
-                <a href="#">Development</a>
-                <a href="#">Travel</a>
-                <a href="#">Web Design</a>
-                <a href="#">Marketing</a>
-                <a href="#">Research</a>
-                <a href="#">Managment</a>
-              </div>
-            </div>
-          </div>
-          <!-- End widget Tags -->
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 </body>
+
 </html>

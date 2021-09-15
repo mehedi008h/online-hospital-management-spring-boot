@@ -10,81 +10,13 @@
 </head>
 <body>
 <section>
-    <div class="container mt-15">
+    <div class="container-fluid mt-15">
         <div class="page-inner no-page-title">
             <!-- start page main wrapper -->
             <div id="main-wrapper">
                 <div class="row">
                     <!-- Blog -->
-                    <div  class="col-lg-7 col-xl-8 mt-3">
-                        <div class="main-box no-header clearfix">
-                            <div class="main-box-body clearfix">
-                                <div class="table-responsive">
-                                    <table class="table user-list">
-                                        <thead>
-                                        <tr>
-                                            <th><span>Title</span></th>
-                                            <th class="text-center"><span>Type</span></th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="b :${blogs}">
-                                            <td>
-                                                <span th:text="${b.title}" class="label label-default">pending</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span th:text="${b.type}" class="label label-default">pending</span>
-                                            </td>
-                                            <td style="width: 20%;">
-                                                <a href="#" class="table-link text-warning">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square fa-stack-2x"></i>
-                                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                        </span>
-                                                </a>
-                                                <a th:href="@{'/admin/update-blog/'+${b.id}}" class="table-link text-info">
-                                                    <span class="fa-stack">
-                                                        <i class="fa fa-square fa-stack-2x"></i>
-                                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                    </span>
-                                                </a>
-                                                <a th:href="@{'/admin/delete-blog/'+${b.id}}" class="table-link danger">
-                                                    <span class="fa-stack">
-                                                        <i class="fa fa-square fa-stack-2x"></i>
-                                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                    </span>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Pagination -->
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li th:if="${currentPage != 0}" class="page-item">
-                                    <a class="page-link" th:href="@{'/admin/blog/'+${currentPage - 1}}" href="#">Previous</a>
-                                </li>
-
-                                <li th:classappend="${currentPage== i - 1?'active':''}"
-                                    th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                    <a class="page-link" th:href="@{'/admin/blog/'+${i - 1}}" href="#">
-                                        <span th:text="${i}"></span>
-                                    </a>
-                                </li>
-
-                                <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                    <a class="page-link" th:href="@{'/admin/blog/'+${currentPage + 1}}" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!-- End Blog -->
-                    <div class="col-lg-12 col-xl-4 mt-3">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="body search">
                                 <form action="">
@@ -170,12 +102,75 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-8">
+                        <div class="main-box no-header clearfix">
+                            <div class="main-box-body clearfix">
+                                <div class="table-responsive">
+                                    <table class="table user-list">
+                                        <thead>
+                                        <tr>
+                                            <th><span>Title</span></th>
+                                            <th class="text-center"><span>Type</span></th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="b :${blogs}">
+                                            <td>
+                                                <span th:text="${b.title}" class="label label-default">pending</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span th:text="${b.type}" class="label label-default">pending</span>
+                                            </td>
+                                            <td style="width: 20%;">
+                                                <a href="#" class="table-link text-warning">
+                                                        <span class="fa-stack">
+                                                            <i class="fa fa-square fa-stack-2x"></i>
+                                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                                        </span>
+                                                </a>
+                                                <a th:href="@{'/admin/update-blog/'+${b.id}}" class="table-link text-info">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square fa-stack-2x"></i>
+                                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                                <a th:href="@{'/admin/delete-blog/'+${b.id}}" class="table-link danger">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square fa-stack-2x"></i>
+                                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li th:if="${currentPage != 0}" class="page-item">
+                                    <a class="page-link" th:href="@{'/admin/blog/'+${currentPage - 1}}" href="#">Previous</a>
+                                </li>
+
+                                <li th:classappend="${currentPage== i - 1?'active':''}"
+                                    th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                    <a class="page-link" th:href="@{'/admin/blog/'+${i - 1}}" href="#">
+                                        <span th:text="${i}"></span>
+                                    </a>
+                                </li>
+
+                                <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                                    <a class="page-link" th:href="@{'/admin/blog/'+${currentPage + 1}}" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <!-- Row -->
-            </div>
-            <!-- end page main wrapper -->
-            <div class="page-footer">
-                <p>Copyright © 2020 Evince All rights reserved.</p>
             </div>
         </div>
     </div>

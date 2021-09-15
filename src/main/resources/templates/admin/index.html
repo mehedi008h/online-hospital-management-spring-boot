@@ -10,7 +10,80 @@
 </head>
 <body>
 <section>
-    <h1>Admin</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 mt-3">
+                <div class="card rounded p-5">
+                    <h1 th:text="${totalBlog}">544</h1>
+                    <h4>Total Blog</h4>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3">
+                <div class="card rounded p-5">
+                    <h1 th:text="${totalBPost}">545</h1>
+                    <h4>Total Blood Post</h4>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3">
+                <div class="card rounded p-5">
+                    <h1 th:text="${totalHospital}">544</h1>
+                    <h4>Total Hospital</h4>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3">
+                <div class="card rounded p-5">
+                    <h1 th:text="${ambulance}">544</h1>
+                    <h4>Total Ambulance</h4>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Blood Group</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="b :${bPost}">
+                                <td th:text="${b.title}">Mark</td>
+                                <td th:text="${b.blood_group}">Otto</td>
+                                <td th:text="${b.phone}">Mark</td>
+                                <td th:text="${b.user.name}">Mark</td>
+                                <td th:text="${b.id}">Mark</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th class="text-center" scope="col">Blood Group</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="u :${users}">
+                                <td th:text="${u.name}">Mark</td>
+                                <td class="text-center" th:text="${u.blood_group}">Otto</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 </body>
 </html>

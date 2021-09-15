@@ -10,49 +10,11 @@
 </head>
 <body>
 <section>
-    <div id="main-content" class="blog-page mt-3">
-        <div class="container">
+    <div id="main-content" class="blog-page">
+        <div class="container mt-5">
             <div class="row clearfix">
-                <div class="col-lg-8 col-md-12 left-box">
-                    <div th:each="p :${posts}" class="card single_post">
-                        <div class="body">
-                            <h3 style="color: #7A7676" th:text="${p.title}"></h3>
-                            <p th:utext="${p.description}"></p>
-                        </div>
-                        <div class="footer">
-                            <div class="actions">
-                                <a th:href="@{'/user/blood-post-details/'+${p.id}}" href="javascript:void(0);" style="background-color: #03a9f4;color: white" class="btn btn-outline-secondary">Continue Reading</a>
-                            </div>
-                            <ul class="stats">
-                                <li><a href="javascript:void(0);">General</a></li>
-                                <li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
-                                <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Pagination -->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li th:if="${currentPage != 0}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/blood/'+${currentPage - 1}}" href="#">Previous</a>
-                            </li>
-
-                            <li th:classappend="${currentPage== i - 1?'active':''}"
-                                th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/blood/'+${i - 1}}" href="#">
-                                    <span th:text="${i}"></span>
-                                </a>
-                            </li>
-
-                            <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/blood/'+${currentPage + 1}}" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-4 col-md-12 right-box">
-                    <div class="card">
+            <div class="col-md-4 mt-4">
+            	<div class="card">
                         <div class="body search">
                             <form action="">
                                 <div class="input-group m-b-0">
@@ -60,10 +22,7 @@
                                         <span class="input-group-text"><i class="fa fa-search"></i></span>
                                     </div>
                                     <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
-                                </div>
-                                <div class="text-center">
-                                    <button class="btn btn-lg btn-success" type="submit">Search</button>
-                                </div>
+                                </div>                 
                             </form>
                         </div>
                     </div>
@@ -159,63 +118,52 @@
                     </div>
                     <div class="card">
                         <div class="header">
-                            <h2>Popular Posts</h2>
-                        </div>
-                        <div class="body widget popular-post">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="single_post">
-                                        <p class="m-b-0">Apple Introduces Search Ads Basic</p>
-                                        <span>jun 22, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/FFB6C1/000000" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                    <div class="single_post">
-                                        <p class="m-b-0">new rules, more cars, more races</p>
-                                        <span>jun 8, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/FFB6C1/000000" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
                             <h2>Instagram Post</h2>
                         </div>
                         <div class="body widget">
-                            <ul class="list-unstyled instagram-plugin m-b-0">
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-8 mt-4">
+            	<div th:each="p :${posts}" class="card single_post">
+                        <div class="body">
+                            <h3 th:text="${p.title}"></h3>
+                            <p th:utext="${p.description}"></p>
+                        </div>
+                        <div class="footer">
+                            <div class="actions">
+                                <a th:href="@{'/user/blood-post-details/'+${p.id}}" href="javascript:void(0);" class="btn btn-outline-secondary">Continue Reading</a>
+                            </div>
+                            <ul class="stats">
+                                <li><a href="javascript:void(0);">General</a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
-                        </div>
-                        <div class="body widget newsletter">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Enter Email">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-paper-plane"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li th:if="${currentPage != 0}" class="page-item">
+                                <a class="page-link" th:href="@{'/user/blood/'+${currentPage - 1}}" href="#">Previous</a>
+                            </li>
+
+                            <li th:classappend="${currentPage== i - 1?'active':''}"
+                                th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                <a class="page-link" th:href="@{'/user/blood/'+${i - 1}}" href="#">
+                                    <span th:text="${i}"></span>
+                                </a>
+                            </li>
+
+                            <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                                <a class="page-link" th:href="@{'/user/blood/'+${currentPage + 1}}" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+            </div>
+                
+            </div>
         </div>
     </div>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

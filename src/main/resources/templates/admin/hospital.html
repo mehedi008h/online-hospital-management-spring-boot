@@ -10,91 +10,12 @@
 </head>
 <body>
 <section>
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="page-inner no-page-title">
             <!-- start page main wrapper -->
             <div id="main-wrapper">
                 <div class="row">
-                    <!-- Blog -->
-                    <div  class="col-lg-7 col-xl-8 mt-3">
-                        <div class="main-box no-header clearfix">
-                            <div class="main-box-body clearfix">
-                                <div class="table-responsive">
-                                    <table class="table user-list">
-                                        <thead>
-                                        <tr>
-                                            <th><span>Name</span></th>
-                                            <th class="text-center"><span>Email</span></th>
-                                            <th class="text-center"><span>Phone</span></th>
-                                            <th class="text-center"><span>Address</span></th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="h :${hospitals}">
-                                            <td>
-                                                <span th:text="${h.name}" class="label label-default">Email</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span th:text="${h.email}" class="label label-default">Email</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span th:text="${h.phone}" class="label label-default">Phone</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span th:text="${h.zilla}" class="user-subhead">Zilla</span>
-                                            </td>
-                                            <td style="width: 20%;">
-                                                <a href="#" class="table-link text-warning">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square fa-stack-2x"></i>
-                                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                                        </span>
-                                                </a>
-                                                <a th:href="@{'/admin/edit-hospital/'+${h.id}}" class="table-link text-info">
-                                                    <span class="fa-stack">
-                                                        <i class="fa fa-square fa-stack-2x"></i>
-                                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                    </span>
-                                                </a>
-                                                <a th:href="@{'/admin/delete-hospital/'+${h.id}}" class="table-link danger">
-                                                    <span class="fa-stack">
-                                                        <i class="fa fa-square fa-stack-2x"></i>
-                                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                    </span>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pagination-wrap mt-3">
-                            <!-- Pagination -->
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li th:if="${currentPage != 0}" class="page-item">
-                                        <a class="page-link" th:href="@{'/admin/hospital/'+${currentPage - 1}}" href="#">Previous</a>
-                                    </li>
-
-                                    <li th:classappend="${currentPage== i - 1?'active':''}"
-                                        th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                        <a class="page-link" th:href="@{'/admin/hospital/'+${i - 1}}" href="#">
-                                            <span th:text="${i}"></span>
-                                        </a>
-                                    </li>
-
-                                    <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                        <a class="page-link" th:href="@{'/admin/hospital/'+${currentPage + 1}}" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <!-- End Blog -->
-                    <div class="col-lg-12 col-xl-4 mt-3">
+                    <div class="col-md-4 mt-5">
                         <div class="card">
                             <div class="body search">
                                 <form action="">
@@ -206,13 +127,87 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-8 mt-5">
+                        <div class="main-box no-header clearfix">
+                            <div class="main-box-body clearfix">
+                                <div class="table-responsive">
+                                    <table class="table user-list pl-2">
+                                        <thead>
+                                        <tr>
+                                            <th><span>Name</span></th>
+                                            <th class="text-center"><span>Email</span></th>
+                                            <th class="text-center"><span>Phone</span></th>
+                                            <th class="text-center"><span>Address</span></th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="h :${hospitals}">
+                                            <td>
+                                                <span th:text="${h.name}" class="label label-default">Email</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span th:text="${h.email}" class="label label-default">Email</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span th:text="${h.phone}" class="label label-default">Phone</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span th:text="${h.zilla}" class="user-subhead">Zilla</span>
+                                            </td>
+                                            <td style="width: 20%;">
+                                                <a href="#" class="table-link text-warning">
+                                                        <span class="fa-stack">
+                                                            <i class="fa fa-square fa-stack-2x"></i>
+                                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                                        </span>
+                                                </a>
+                                                <a th:href="@{'/admin/edit-hospital/'+${h.id}}" class="table-link text-info">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square fa-stack-2x"></i>
+                                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                                <a th:href="@{'/admin/delete-hospital/'+${h.id}}" class="table-link danger">
+                                                    <span class="fa-stack">
+                                                        <i class="fa fa-square fa-stack-2x"></i>
+                                                        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pagination-wrap mt-3">
+                            <!-- Pagination -->
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li th:if="${currentPage != 0}" class="page-item">
+                                        <a class="page-link" th:href="@{'/admin/hospital/'+${currentPage - 1}}" href="#">Previous</a>
+                                    </li>
+
+                                    <li th:classappend="${currentPage== i - 1?'active':''}"
+                                        th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                        <a class="page-link" th:href="@{'/admin/hospital/'+${i - 1}}" href="#">
+                                            <span th:text="${i}"></span>
+                                        </a>
+                                    </li>
+
+                                    <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                                        <a class="page-link" th:href="@{'/admin/hospital/'+${currentPage + 1}}" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
                 <!-- Row -->
             </div>
             <!-- end page main wrapper -->
-            <div class="page-footer">
-                <p>Copyright © 2020 Evince All rights reserved.</p>
-            </div>
         </div>
     </div>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

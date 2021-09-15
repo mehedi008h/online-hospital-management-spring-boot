@@ -4,7 +4,6 @@ import com.online.hospital.managment.helper.Message;
 import com.online.hospital.managment.model.LocationState;
 import com.online.hospital.managment.model.User;
 import com.online.hospital.managment.repository.UserRepository;
-import com.online.hospital.managment.service.CoronaDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,9 +29,6 @@ public class HomeController {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    private CoronaDataService coronaDataService;
 
     @RequestMapping("/")
     public String home(Model model)
@@ -93,12 +89,6 @@ public class HomeController {
     //covid -19
     @GetMapping("/corona")
     public String corona(Model model) {
-        List<LocationState> allStats = coronaDataService.getLocationStates();
-        int totalReportedCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
-        int totalNewCases = allStats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
-        model.addAttribute("locationStats", allStats);
-        model.addAttribute("totalReportedCases", totalReportedCases);
-        model.addAttribute("totalNewCases", totalNewCases);
         return "normal/corona";
     }
 

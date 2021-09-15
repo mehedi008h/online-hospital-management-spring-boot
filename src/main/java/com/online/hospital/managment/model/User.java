@@ -1,6 +1,11 @@
 package com.online.hospital.managment.model;
 
 import javax.persistence.*;
+
+import org.hibernate.type.TrueFalseType;
+
+import com.online.hospital.managment.model.comment.BlogComment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +31,13 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BloodPost> bloodPosts = new ArrayList<>();
-
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BlogComment> blogComment = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Doner> doners = new ArrayList<>();
+    
     public User() {
     }
 
@@ -133,23 +144,30 @@ public class User {
     public void setBloodPosts(List<BloodPost> bloodPosts) {
         this.bloodPosts = bloodPosts;
     }
+    
+	public List<BlogComment> getBlogComment() {
+		return blogComment;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", blood_group='" + blood_group + '\'' +
-                ", work='" + work + '\'' +
-                ", bod='" + bod + '\'' +
-                ", image='" + image + '\'' +
-                ", description='" + description + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", bloodPosts=" + bloodPosts +
-                '}';
-    }
+	public void setBlogComment(List<BlogComment> blogComment) {
+		this.blogComment = blogComment;
+	}
+	
+	public List<Doner> getDoners() {
+		return doners;
+	}
+
+	public void setDoners(List<Doner> doners) {
+		this.doners = doners;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", address=" + address
+				+ ", blood_group=" + blood_group + ", work=" + work + ", bod=" + bod + ", image=" + image
+				+ ", description=" + description + ", password=" + password + ", role=" + role + ", bloodPosts="
+				+ bloodPosts + ", blogComment=" + blogComment + "]";
+	}
+
+	
 }

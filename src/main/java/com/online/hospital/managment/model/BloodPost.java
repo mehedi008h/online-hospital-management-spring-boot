@@ -1,15 +1,16 @@
 package com.online.hospital.managment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GeneratorType;
+import com.online.hospital.managment.model.comment.BlogComment;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
+@Table(name = "BLOOD")
 public class BloodPost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +29,10 @@ public class BloodPost {
     @ManyToOne
     @JsonIgnore
     private User user;
-
+    
+    @OneToMany(mappedBy = "bloodPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Doner> doners = new ArrayList<>();
+    
     public BloodPost() {
     }
 
@@ -119,9 +123,18 @@ public class BloodPost {
     public void setUser(User user) {
         this.user = user;
     }
+    
+	public List<Doner> getDoners() {
+		return doners;
+	}
 
-    @Override
+	public void setDoners(List<Doner> doners) {
+		this.doners = doners;
+	}
+
+	@Override
     public boolean equals(Object obj) {
         return this.id == ((BloodPost)obj).getId();
     }
+
 }

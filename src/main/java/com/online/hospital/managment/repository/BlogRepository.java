@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
     @Query("select u from Blog u where u.id = :id")
-    public Blog getBlogByBlogId(@Param("id") String id);
+    public Blog getBlogByBlogId(@Param("id") Integer id);
 
     //search
     @Query("SELECT b FROM Blog b WHERE b.title LIKE %?1%"

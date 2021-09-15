@@ -10,143 +10,96 @@
 </head>
 <body>
 <section>
-    <div id="main-content" class="blog-page mt-3">
-        <div class="container">
-            <div class="row clearfix">
-                <div class="col-lg-8 col-md-12 left-box">
-                    <div th:each="h :${hospitals}" class="member-entry">
-                        <div class="member-details">
-                            <a href="#"><h3 th:text="${h.name}"></h3></a>
-                            <div class="row info-list font-15">
-                                <div class="col-sm-4">
-                                    <h5><i class="fa fa-location-arrow"></i></h5>
-                                    <a href=""><h6 th:text="${h.google_location}"></h6></a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <h5><i class="fa fa-phone"></i></h5>
-                                    <h6 th:text="${h.phone}" href="#">@johnnie</h6>
-                                </div>
-                                <div class="col-sm-4">
-                                    <h5><i class="fa fa-envelope"></i></h5>
-                                    <h6 th:text="${h.email}" href="#">fb.me/johnnie</h6>
-                                </div>
-                                <div class="clear"></div>
-
-                                <div class="col-sm-4">
-                                    <h5><i class="fa fa-address-book"></i></h5>
-                                    <h6 th:text="${h.thana}" href="#">john@gmail.com</h6>
-                                </div>
-                                <div class="col-sm-4">
-                                    <h5><i class="fa fa-address-book"></i></h5>
-                                    <h6 th:text="${h.zilla}" href="#">johnkennedy</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pagination -->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li th:if="${currentPage != 0}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/hospital/'+${currentPage - 1}}" href="#">Previous</a>
-                            </li>
-
-                            <li th:classappend="${currentPage== i - 1?'active':''}"
-                                th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/hospital/'+${i - 1}}" href="#">
-                                    <span th:text="${i}"></span>
-                                </a>
-                            </li>
-
-                            <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/hospital/'+${currentPage + 1}}" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-4 col-md-12 right-box">
-                    <div class="card">
-                        <div class="body search">
-                            <form action="">
-                                <div class="input-group m-b-0">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                    </div>
-                                    <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
-                                </div>
-                                <div class="text-center">
-                                    <button class="btn btn-lg btn-success" type="submit">Search</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Popular Posts</h2>
-                        </div>
-                        <div class="body widget popular-post">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="single_post">
-                                        <p class="m-b-0">Apple Introduces Search Ads Basic</p>
-                                        <span>jun 22, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/FFB6C1/000000" alt="Awesome Image">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 mt-4">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <div class="row search-body">
+                            <div class="col-lg-12">
+                                <div class="search-result">
+                                    <div class="result-body">
+                                        <div class="body search">
+                                            <form action="">
+                                                <div class="input-group m-b-0">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                                    </div>
+                                                    <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
+                                                </div>
+                                            </form>
                                         </div>
-                                    </div>
-                                    <div class="single_post">
-                                        <p class="m-b-0">new rules, more cars, more races</p>
-                                        <span>jun 8, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/FFB6C1/000000" alt="Awesome Image">
+                                        <div class="table-responsive">
+                                            <table class="table widget-26">
+                                                <tbody>
+                                                <tr th:each="h :${hospitals}">
+                                                    <td>
+                                                        <div class="widget-26-job-emp-img">
+                                                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="Company" />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-title">
+                                                            <a th:href="@{'/user/hospital-details/'+${h.id}}" href="#"><span th:text="${h.name}"></span></a>
+                                                            <p class="m-0"><span th:text="${h.email}" class="text-muted time"></span></p>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-info">
+                                                            <p th:text="${h.zilla}" class="type m-0">Full-Time</p>
+                                                            <p th:text="${h.thana}" class="text-muted m-0">in <span class="location">London, UK</span></p>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-salary">
+                                                            <p th:text="${h.division}" class="type m-0">Full-Time</p>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-category bg-soft-base align-items-center">
+                                                            <i class="indicator bg-base"></i>
+                                                            <span th:text="${h.phone}">Software Development</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-26-job-starred">
+                                                            <a th:href="@{'/user/hospital-details/'+${h.id}}" href="#">
+                                                                <i class="far fa-eye"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Instagram Post</h2>
-                        </div>
-                        <div class="body widget">
-                            <ul class="list-unstyled instagram-plugin m-b-0">
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation example d-flex justify-content-center">
+                            <ul class="pagination">
+                                <li th:if="${currentPage != 0}" class="page-item">
+                                    <a class="page-link" th:href="@{'/user/hospital/'+${currentPage - 1}}" href="#">Previous</a>
+                                </li>
+
+                                <li th:classappend="${currentPage== i - 1?'active':''}"
+                                    th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                    <a class="page-link" th:href="@{'/user/hospital/'+${i - 1}}" href="#">
+                                        <span th:text="${i}"></span>
+                                    </a>
+                                </li>
+
+                                <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                                    <a class="page-link" th:href="@{'/user/hospital/'+${currentPage + 1}}" href="#">Next</a>
+                                </li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
-                        </div>
-                        <div class="body widget newsletter">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Enter Email">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-paper-plane"></i></span>
-                                </div>
-                            </div>
-                        </div>
+                        </nav>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#mytextarea'
-        });
-    </script>
 </section>
 </body>
 </html>

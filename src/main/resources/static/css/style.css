@@ -1,108 +1,34 @@
-
-.profile_pic {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
+.bg-primary{
+    background: #0a4275 !important;
 }
-
-.modal[data-modal-color] {
-    color: #fff;
+body {
+    background-image: linear-gradient(to right, #1b5f59, #1ca267);
 }
-
-.modal .modal-header {
-    padding: 23px 26px;
-    border-bottom: 1px solid transparent;
+#name {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 24px;
 }
-
-.modal .modal-content {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31);
-    border-radius: 3px;
-    border: 0;
+.nav-link {
+	margin-right: 3px;
 }
-
-.modal-footer {
-    padding: 15px;
-    text-align: right;
-    border-top: 1px solid transparent;
+.nav-link:hover {
+	background-color: rgba(131, 141, 233, 1);
+	border-radius: 50px;
 }
-
-.modal[data-modal-color] .modal-footer {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.modal[data-modal-color] .modal-footer .btn-link {
-    font-weight: 400;
-}
-
-.modal[data-modal-color] .modal-title, .modal[data-modal-color] .modal-footer .btn-link {
-    color: #fff;
-}
-
-.modal .modal-footer .btn-link {
-    font-size: 14px;
-    color: #000;
-    font-weight: 500;
-}
-
-.btn-link {
-    color: #797979;
+.profile-link {
+    padding: 5px;
+    color: black;
     text-decoration: none;
-    border-radius: 2px;
+    border-radius: 5px;
 }
-
-.modal[data-modal-color] .modal-footer .btn-link:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    text-decoration:none;
+.profile-link:hover {
+    background-color: gainsboro;
 }
-
-.modal[data-modal-color] .modal-footer .btn-link {
-    font-weight: 400;
+@media only screen and (max-width: 600px) {
+    #log1 {
+        margin-top: 15px;
+    }
+    .log2 {
+        text-align: center;
+    }
 }
-
-/* ========== MODAL COLORS ===============================*/
-.modal[data-modal-color="blue"] .modal-content {
-    background: #2196f3;
-}
-
-.modal[data-modal-color="lightblue"] .modal-content {
-    background: #03a9f4;
-}
-
-.modal[data-modal-color="cyan"] .modal-content {
-    background: #00bcd4;
-}
-
-.modal[data-modal-color="green"] .modal-content {
-    background: #4caf50;
-}
-
-.modal[data-modal-color="lightgreen"] .modal-content {
-    background: #8bc34a;
-}
-
-.modal[data-modal-color="red"] .modal-content {
-    background: #f44336;
-}
-
-.modal[data-modal-color="amber"] .modal-content {
-    background: #ffc107;
-}
-
-.modal[data-modal-color="orange"] .modal-content {
-    background: #ff9800;
-}
-
-.modal[data-modal-color="teal"] .modal-content {
-    background: #009688;
-}
-
-.modal[data-modal-color="bluegray"] .modal-content {
-    background: #607d8b;
-}
-
-.panel.panel-default {
-    border-top-width: 3px;
-}
-
-

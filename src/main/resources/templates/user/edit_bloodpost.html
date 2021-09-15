@@ -10,12 +10,12 @@
 </head>
 <body>
 <section>
-  <div class="container bootstrap snippets bootdey mt-3">
-    <div class="row ng-scope">
-      <div class="col-md-4">
+  <div class="container bootstrap snippets bootdey mt-5">
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-12 left-box mt-4">
         <div class="card card-white grid-margin">
-          <div class="card-heading clearfix text-center">
-            <h4 class="card-title">Blog No <span th:text="${bloodPost.id}"></span></h4>
+          <div class="body widget text-center">
+            <h4 class="">Blog No <span th:text="${bloodPost.id}"></span></h4>
             <hr>
             <div class="mt-1">
               <h2><i class="fa fa-heading"></i></h2>
@@ -73,9 +73,9 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="card card-white grid-margin">
-          <div class="card-heading clearfix text-center">
+      <div class="col-lg-8 col-md-12 right-box mt-4">
+        <div class="card card-white">
+          <div class="body widget text-center">
             <h4 class="card-title">Update Post</h4>
             <form th:action="@{/user/update/{id}(id=${bloodPost.id})}" th:object="${bloodPost}" method="post">
               <!-- Title -->

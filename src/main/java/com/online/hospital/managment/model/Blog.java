@@ -1,6 +1,11 @@
 package com.online.hospital.managment.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.online.hospital.managment.model.comment.BlogComment;
 
 @Entity
 @Table(name = "Blog")
@@ -17,6 +22,9 @@ public class Blog {
     private String solution;
     private String type;
     private String videoLink;
+    
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BlogComment> blogComment = new ArrayList<>();
 
     public Blog() {
 
@@ -77,4 +85,21 @@ public class Blog {
     public void setVideoLink(String videoLink) {
         this.videoLink = videoLink;
     }
+
+	public List<BlogComment> getBlogComment() {
+		return blogComment;
+	}
+
+	public void setBlogComment(List<BlogComment> blogComment) {
+		this.blogComment = blogComment;
+	}
+
+	@Override
+	public String toString() {
+		return "Blog [id=" + id + ", title=" + title + ", description=" + description + ", symptoms=" + symptoms
+				+ ", solution=" + solution + ", type=" + type + ", videoLink=" + videoLink + ", blogComment="
+				+ blogComment + "]";
+	}
+    
+    
 }

@@ -1,14 +1,8 @@
 package com.online.hospital.managment.controller;
 
 import com.online.hospital.managment.helper.Message;
-import com.online.hospital.managment.model.Ambulance;
-import com.online.hospital.managment.model.Blog;
-import com.online.hospital.managment.model.Hospital;
-import com.online.hospital.managment.model.User;
-import com.online.hospital.managment.repository.AmbulanceRepository;
-import com.online.hospital.managment.repository.BlogRepository;
-import com.online.hospital.managment.repository.HospitalRepository;
-import com.online.hospital.managment.repository.UserRepository;
+import com.online.hospital.managment.model.*;
+import com.online.hospital.managment.repository.*;
 import com.online.hospital.managment.service.AmbulanceService;
 import com.online.hospital.managment.service.BlogService;
 import com.online.hospital.managment.service.HospitalService;
@@ -17,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +49,9 @@ public class AdminController {
     @Autowired
     private AmbulanceRepository ambulanceRepository;
 
+    @Autowired
+    private BloodPostRepository bloodPostRepository;
+
     @ModelAttribute
     public void addCommonData(Model model, Principal principal)
     {
@@ -68,6 +66,22 @@ public class AdminController {
     public String home(Model model)
     {
         model.addAttribute("title","Admin - Online Hospital Management");
+        List<Blog> blogs = this.blogRepository.findAll();
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(0,10,sort);
+        Page<BloodPost> bloodPosts = this.bloodPostRepository.findAll(pageable);
+        List<Hospital> hospitals = this.hospitalRepository.findAll();
+        List<Ambulance> ambulances = this.ambulanceRepository.findAll();
+        Page<User> users = this.userRepository.findAll(pageable);
+        int totalBlog = blogs.size();
+        int totalHospital = hospitals.size();
+        int ambulance = ambulances.size();
+        model.addAttribute("totalBlog", totalBlog);
+        model.addAttribute("bPost", bloodPosts);
+        model.addAttribute("totalBPost", bloodPosts.getTotalElements());
+        model.addAttribute("totalHospital", totalHospital);
+        model.addAttribute("ambulance", ambulance);
+        model.addAttribute("users", users);
         return "admin/index";
     }
 
@@ -101,7 +115,8 @@ public class AdminController {
     public String blog(@PathVariable("page") Integer page, Model model,@Param("keyword") String keyword)
     {
         model.addAttribute("title","Blog - Online Hospital Management");
-        Pageable pageable = PageRequest.of(page,5);
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page,5, sort);
         Page<Blog> blogs = this.blogService.listAll(keyword, pageable);
         model.addAttribute("blogs", blogs);
         model.addAttribute("keyword",keyword);

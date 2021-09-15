@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/User-profile::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="card">
+                        <div class="d-flex justify-content-between align-items-center p-3">
+                            <h5 class="fw-bold mt-2">My Profile</h5>
+                            <a href="">Edit</a>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mt-5 text-center mb-5">
+                                    <img style="width: 80%; border-radius: 50%; object-fit: cover; border: 3px solid pink;"
+                                        th:src="@{'/image/'+${user.image}}" src="" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <table class="table table-borderless">
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"><i class="fas fa-signature"></i></th>
+                                            <td>Full Name</td>
+                                            <td th:text="${user.name}">Otto</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><i class="fas fa-briefcase"></i></th>
+                                            <td>Work</td>
+                                            <td th:text="${user.work}">Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><i class="fas fa-at"></i></th>
+                                            <td>Email</td>
+                                            <td th:text="${user.email}">Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><i class="fas fa-mobile-alt"></i></th>
+                                            <td>Phone</td>
+                                            <td th:text="${user.phone}">Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><i class="far fa-address-book"></i></th>
+                                            <td>Address</td>
+                                            <td th:text="${user.address}">@twitter</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><i class="fas fa-notes-medical"></i></th>
+                                            <td>Blood Group</td>
+                                            <td th:text="${user.blood_group}">@twitter</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><i class="far fa-calendar-check"></i></th>
+                                            <td>Birth Date</td>
+                                            <td th:text="${user.bod}">@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+	</section>
+</body>
+</html>

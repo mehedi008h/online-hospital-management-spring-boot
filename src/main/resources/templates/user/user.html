@@ -10,161 +10,68 @@
 </head>
 <body>
 <section>
-    <div id="main-content" class="blog-page mt-3">
-        <div class="container">
+    <div id="main-content" class="blog-page">
+        <div class="container mt-5">
             <div class="row clearfix">
-                <div class="col-lg-8 col-md-12 left-box">
-                    <div th:each="u :${users}" class="member-entry">
-                        <a href="#" class="member-img">
-                            <img th:src="@{'/image/'+${u.image}}" src="" class="img-rounded" alt="" style="object-fit: cover;height: 109px;width: 82px">
-                            <i class="fa fa-forward"></i>
-                        </a>
-                        <div class="member-details">
-                             <a href="#"><h4 th:text="${u.name}"></h4></a>
-                            <div class="row info-list">
-                                <div class="col-sm-4">
-                                    <i class="fa fa-briefcase"></i>
-                                    Work at <a th:text="${u.work}" href="#">Complete Tech</a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <i class="fa fa-phone"></i>
-                                    <a th:text="${u.phone}" href="#">@johnnie</a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <i class="fa fa-facebook"></i>
-                                    <a th:text="${u.blood_group}" href="#">fb.me/johnnie</a>
-                                </div>
-                                <div class="clear"></div>
-                                <div class="col-sm-4">
-                                    <i class="fa fa-location"></i>
-                                    <a th:text="${u.address}" href="#">Prishtina</a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <i class="fa fa-envelope"></i>
-                                    <a th:text="${u.email}" href="#">john@gmail.com</a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <i class="fa fa-linkedin"></i>
-                                    <p th:text="${u.bod}" href="#">johnkennedy</p>
-                                </div>
+                <div class="body search mt-4">
+                    <form action="">
+                        <div class="input-group m-b-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                            <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
+                        </div>
+                    </form>
+                </div>
+                <div th:each="u :${users}" class="col-md-6 col-xl-3">
+                    <div class="card m-b-30">
+                        <div class="card-body row">
+                            <div class="col-6">
+                                <a href=""><img th:src="@{'/image/'+${u.image}}" src="" alt="" class="img-fluid rounded-circle w-60" style="object-fit: cover; width: 80px; height: 80px"></a>
+                            </div>
+                            <div class="col-6 card-title align-self-center mb-0">
+                                <h5 th:text="${u.name}">Emma A. Main</h5>
+                                <p th:text="${u.work}" class="m-0">Graphics Designer</p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Pagination -->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li th:if="${currentPage != 0}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/member/'+${currentPage - 1}}" href="#">Previous</a>
-                            </li>
-
-                            <li th:classappend="${currentPage== i - 1?'active':''}"
-                                th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/member/'+${i - 1}}" href="#">
-                                    <span th:text="${i}"></span>
-                                </a>
-                            </li>
-
-                            <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/member/'+${currentPage + 1}}" href="#">Next</a>
-                            </li>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Blood Group : <P th:text="${u.blood_group}"></li>
+                            <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Address : <P th:text="${u.address}"></li>
+                            <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : <P th:text="${u.phone}"></P></li>
                         </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-4 col-md-12 right-box">
-                    <div class="card">
-                        <div class="body search">
-                            <form action="">
-                                <div class="input-group m-b-0">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                    </div>
-                                    <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
-                                </div>
-                                <div class="text-center">
-                                    <button class="btn btn-lg btn-success" type="submit">Search</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Categories Clouds</h2>
-                        </div>
-                        <div class="body widget">
-                            <ul class="list-unstyled categories-clouds m-b-0">
-                                <li><a href="javascript:void(0);">eCommerce</a></li>
-                                <li><a href="javascript:void(0);">Microsoft Technologies</a></li>
-                                <li><a href="javascript:void(0);">Creative UX</a></li>
-                                <li><a href="javascript:void(0);">Wordpress</a></li>
-                                <li><a href="javascript:void(0);">Angular JS</a></li>
-                                <li><a href="javascript:void(0);">Enterprise Mobility</a></li>
-                                <li><a href="javascript:void(0);">Website Design</a></li>
-                                <li><a href="javascript:void(0);">HTML5</a></li>
-                                <li><a href="javascript:void(0);">Infographics</a></li>
-                                <li><a href="javascript:void(0);">Wordpress Development</a></li>
+                        <div class="card-body">
+                            <div class="float-right btn-group btn-group-sm">
+                                <a th:href="@{'/user/member-details/'+${u.id}}" href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="far fa-eye"></i> </a>
+                            </div>
+                            <ul class="social-links list-inline mb-0">
+                                <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+                                <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Popular Posts</h2>
-                        </div>
-                        <div class="body widget popular-post">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="single_post">
-                                        <p class="m-b-0">Apple Introduces Search Ads Basic</p>
-                                        <span>jun 22, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/FFB6C1/000000" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                    <div class="single_post">
-                                        <p class="m-b-0">new rules, more cars, more races</p>
-                                        <span>jun 8, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://via.placeholder.com/280x280/FFB6C1/000000" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Instagram Post</h2>
-                        </div>
-                        <div class="body widget">
-                            <ul class="list-unstyled instagram-plugin m-b-0">
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                                <li><a href="javascript:void(0);"><img src="https://via.placeholder.com/80x80/FFB6C1/000000" alt="image description"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
-                        </div>
-                        <div class="body widget newsletter">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Enter Email">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="icon-paper-plane"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
 
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li th:if="${currentPage != 0}" class="page-item">
+                            <a class="page-link" th:href="@{'/user/member/'+${currentPage - 1}}" href="#">Previous</a>
+                        </li>
+
+                        <li th:classappend="${currentPage== i - 1?'active':''}"
+                            th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                            <a class="page-link" th:href="@{'/user/member/'+${i - 1}}" href="#">
+                                <span th:text="${i}"></span>
+                            </a>
+                        </li>
+
+                        <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                            <a class="page-link" th:href="@{'/user/member/'+${currentPage + 1}}" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </section>
