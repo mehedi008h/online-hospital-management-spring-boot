@@ -24,6 +24,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 		integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
 		crossorigin="anonymous" />
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" th:href="@{/css/blood.css}">
 	<link rel="stylesheet" th:href="@{/css/user/profile.css}">
@@ -53,14 +56,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase" id="nav" style="color: white">
-					<li class="nav-item"><a th:href="@{/user/index}" class="nav-link text-white" aria-current="page"
+					<li class="nav-item"><a id="home" th:href="@{/user/index}" class="nav-link text-white" aria-current="page"
 							href="#">Home</a>
 					</li>
 					<li class="nav-item"><a th:href="@{/user/blog/0}" id="blog" class="nav-link text-white"
 							href="#">Blog</a></li>
-					<li class="nav-item"><a th:href="@{/user/blood/0}" class="nav-link text-white" href="#">Blood</a>
+					<li class="nav-item"><a id="blood" th:href="@{/user/blood/0}" class="nav-link text-white" href="#">Blood</a>
 					</li>
-					<li class="nav-item"><a th:href="@{/user/member/0}" class="nav-link text-white" href="#">Member</a>
+					<li class="nav-item"><a id="member" th:href="@{/user/member/0}" class="nav-link text-white" href="#">Member</a>
 					</li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle text-white" href="#"
 							id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Service
@@ -68,11 +71,7 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a th:href="@{/user/hospital/0}" class="dropdown-item " href="#">Hospital</a></li>
 							<li><a th:href="@{/user/ambulance/0}" class="dropdown-item " href="#">Ambulance</a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
+							<li><a th:href="@{/user/covid-19}" class="dropdown-item " href="#">Covid-19</a></li>
 						</ul>
 					</li>
 					<li class="nav-item"><a class="nav-link text-white" href="#" tabindex="-1"
@@ -141,20 +140,6 @@
 	<div th:replace="${content}"></div>
 	<!-- Footer -->
 	<footer class="text-center text-white mt-5" style="background-color: #0a4275;">
-		<!-- Grid container -->
-		<div class="container p-4 pb-0">
-			<!-- Section: CTA -->
-			<section class="">
-				<p class="d-flex justify-content-center align-items-center">
-					<span class="me-3">Register for free</span>
-					<button type="button" class="btn btn-outline-light btn-rounded">
-						Sign up!</button>
-				</p>
-			</section>
-			<!-- Section: CTA -->
-		</div>
-		<!-- Grid container -->
-
 		<!-- Copyright -->
 		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
 			© 2020 Copyright: <a class="text-white" href="https://mdbootstrap.com/">Online Hospital Management</a>
@@ -167,22 +152,7 @@
 			document.getElementById('close').style.display = 'none';
 		}
 	</script>
-	<script>
-		// Get the container element
-		var btnContainer = document.getElementById("nav");
-
-		// Get all buttons with class="btn" inside the container
-		var btns = btnContainer.getElementsByClassName("nav-link");
-
-		// Loop through the buttons and add the active class to the current/clicked button
-		for (var i = 0; i < btns.length; i++) {
-			btns[i].addEventListener("click", function () {
-				var current = document.getElementsByClassName("active");
-				current[0].className = current[0].className.replace(" active", "");
-				this.className += " active";
-			});
-		}
-	</script>
+	<script th:src="@{/js/script.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
 		crossorigin="anonymous"></script>

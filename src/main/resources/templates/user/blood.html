@@ -118,7 +118,7 @@
                     </div>
                     <div class="card">
                         <div class="header">
-                            <h2>Instagram Post</h2>
+                            <h2>Instruction</h2>
                         </div>
                         <div class="body widget">
                         </div>
@@ -127,12 +127,12 @@
             <div class="col-md-8 mt-4">
             	<div th:each="p :${posts}" class="card single_post">
                         <div class="body">
-                            <h3 th:text="${p.title}"></h3>
+                            <h3 class="text-success" th:text="${p.title}"></h3>
                             <p th:utext="${p.description}"></p>
                         </div>
                         <div class="footer">
                             <div class="actions">
-                                <a th:href="@{'/user/blood-post-details/'+${p.id}}" href="javascript:void(0);" class="btn btn-outline-secondary">Continue Reading</a>
+                                <a th:href="@{'/user/blood-post-details/'+${p.id}}" href="javascript:void(0);" class="btn btn-outline-secondary btn-sm">Continue Reading</a>
                             </div>
                             <ul class="stats">
                                 <li><a href="javascript:void(0);">General</a></li>
@@ -170,6 +170,12 @@
     <script>
         tinymce.init({
             selector: '#mytextarea'
+        });
+    </script>
+    <script>
+        $(document).ready(() => {
+            $('.item').removeClass('glow');
+            $('#blood').addClass('glow');
         });
     </script>
 </section>

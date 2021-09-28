@@ -42,31 +42,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase">
                     <li class="nav-item">
-                        <a th:href="@{/index}" class="nav-link" aria-current="page" href="#">Home</a>
+                        <a th:href="@{/index}" class="nav-link text-white" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a th:href="@{/blog/0}" class="nav-link text-white" href="#">Blog</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Service
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
+                  
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About</a>
+                        <a class="nav-link text-white" href="#" tabindex="-1" aria-disabled="true">About</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase">
-                    <li class="nav-item"><a th:href="@{/login}" class="nav-link btn btn-outline-warning" href="#"
+                    <li class="nav-item"><a th:href="@{/login}" class="nav-link btn btn-outline-warning btn-sm" href="#"
                                             tabindex="-1" style="border-radius: 50px; width: 100%; color: white;">Login</a></li>
 
-                    <li class="nav-item" id="log1"><a th:href="@{/signup}" class="nav-link btn btn-success ml-2" href="#"
+                    <li class="nav-item" id="log1"><a th:href="@{/signup}" class="nav-link btn btn-success ml-2 btn-sm" href="#"
                                                       tabindex="-1" style="border-radius: 50px; width: 100px; color: white;">Signup</a></li>
                 </ul>
             </div>

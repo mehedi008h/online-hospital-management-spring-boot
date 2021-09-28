@@ -2,7 +2,9 @@
     background: #0a4275 !important;
 }
 body {
-    background-image: linear-gradient(to right, #1b5f59, #1ca267);
+    background: url("../image/body-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #name {
     font-family: 'Oxygen', sans-serif;
@@ -15,6 +17,10 @@ body {
 	background-color: rgba(131, 141, 233, 1);
 	border-radius: 50px;
 }
+.glow {
+	background-color: rgba(131, 141, 233, 1);
+	border-radius: 50px;
+}
 .profile-link {
     padding: 5px;
     color: black;
@@ -22,8 +28,17 @@ body {
     border-radius: 5px;
 }
 .profile-link:hover {
-    background-color: gainsboro;
+	background-color: #e9ecef;
 }
+.active {
+    color: white;
+    background: linear-gradient(
+335.64deg,#ff589b -19.22%,#ff136f 118.87%)!important;
+}
+.active p {
+	color: white;
+}
+
 @media only screen and (max-width: 600px) {
     #log1 {
         margin-top: 15px;

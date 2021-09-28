@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <header style="background-color: #67E5FF;">
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <div class="w-50 mx-auto" style="margin-top: 90px;">
+                            <h1 class="fw-bold" style="color: black;">Stay Safe</h1>
+                            <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
+                                iste dolorum possimus
+                                velit earum esse exercitationem sit ipsa rem. Atque.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-5 mb-3">
+                        <img style="width: 80%;" th:src="@{../image/covid.jpg}" alt="">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container mt-5">
+                <div class="row g-3 mt-5">
+                    <div class="col-md-3">
+                        <div class="card text-center p-5 confrim bg-primary text-white">
+                            <h1 id="confrim">564</h1>
+                            <h4>Confirmed</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center p-5 death bg-danger text-white">
+                            <h1 id="death">564</h1>
+                            <h4>Deaths</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center p-5 recover bg-success text-white">
+                            <h1 id="recover">564</h1>
+                            <h4>Recovered</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center p-5 bg-info text-white">
+                            <h1 id="active">564</h1>
+                            <h4>Active</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+
+</html>

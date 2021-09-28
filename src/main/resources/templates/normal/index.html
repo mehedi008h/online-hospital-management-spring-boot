@@ -1,16 +1,79 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="normal/base::layout(~{::section})">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <section>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
 
-    </section>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <section>
+    <header style="background-color: #3B200B;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 mt-5">
+            <div class="ms-5 w-75 mx-auto" style="margin-top: 120px;">
+              <h1 class="text-white fw-bold lh-5 mt-5">Donate <span class="text-success">Blood</span> Save Life</h1>
+              <p class="text-light mt-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis nobis facere
+                iste,
+                dolorum animi, nam
+                amet perferendis totam praesentium illo quae exercitationem eius vitae? Itaque ullam vero quisquam
+                distinctio dolorem?</p>
+              <a th:href="@{/login}" type="button" class="btn btn-outline-success text-white mt-3 fw-bold">Get
+                More Information <span class="ms-2"><i class="fab fa-gratipay text-danger"></i></span></a>
+            </div>
+          </div>
+          <div class="col-md-6 mt-5">
+            <img style="width: 80%;" th:src="@{/image/home.jpg}" alt="">
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card p-3">
+                <img style="height: 300px; width: 320px;" th:src="@{/image/blog.jpg}" alt="">
+                <h4 class="fw-bold mt-3 text-success">Health Issue</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repellat ducimus maxime beatae, id ipsa.
+                </p>
+                <button class="btn btn-info mt-2">Check Out</button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card p-3">
+                <img style="height: 300px; width: 320px;" th:src="@{/image/hospital.jpg}" alt="">
+                <h4 class="fw-bold mt-3 text-success">Health Issue</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repellat ducimus maxime beatae, id ipsa.
+                </p>
+                <button class="btn btn-info mt-2">Check Out</button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card p-3">
+                <img style="height: 300px; width: 320px;" th:src="@{/image/ambulance.jpg}" alt="">
+                <h4 class="fw-bold mt-3 text-success">Health Issue</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repellat ducimus maxime beatae, id ipsa.
+                </p>
+                <button class="btn btn-info mt-2">Check Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+        $(document).ready(() => {
+            $('.item').removeClass('glow');
+            $('#home').addClass('glow');
+        });
+    </script>
+  </section>
 </body>
+
 </html>

@@ -1,11 +1,19 @@
 package com.online.hospital.managment.controller;
 
 import com.online.hospital.managment.helper.Message;
+import com.online.hospital.managment.model.Blog;
 import com.online.hospital.managment.model.LocationState;
 import com.online.hospital.managment.model.User;
 import com.online.hospital.managment.repository.UserRepository;
+import com.online.hospital.managment.service.BlogService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +37,31 @@ public class HomeController {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    @Autowired
+    private BlogService blogService;
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String home(Model model)
     {
         model.addAttribute("title","Online Hospital Management");
         return "normal/index";
+    }
+    
+ // show blog
+    @RequestMapping("/blog/{page}")
+    public String blog(@PathVariable("page") Integer page, Model model, @Param("keyword") String keyword)
+    {
+        model.addAttribute("title","Blog - Online Hospital Management");
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(page, 5, sort);
+        Page<Blog> blogs = blogService.listAll(keyword, pageable);
+        model.addAttribute("blogs",blogs);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPage", blogs.getTotalPages());
+        model.addAttribute("totalComment", blogs.getTotalPages());
+        return "normal/blog";
     }
 
     //signup

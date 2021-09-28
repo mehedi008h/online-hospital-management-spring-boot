@@ -80,64 +80,37 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Information</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
                         <form th:action="@{/user/process-doner/{id}(id=${bloodPost.id})}" method="post">
-                          <!-- Title -->
-                          <div class="input-group mt-1">
-                            <div class="input-group-prepend">
-                              <div class="input-group-text">
-                                <i class="fas fa-heading"></i>
-                              </div>
-                            </div>
-                            <input required type="text" id="hospitalName" name="hospitalName"
-                              placeholder="Enter title Here" class="form-control" />
-                          </div>
+                          <label for="basic-url" class="form-label">Mention your last blood donate date</label>
                           <!-- donate date  -->
                           <div class="input-group mt-1">
                             <div class="input-group-prepend">
                               <div class="input-group-text">
-                                <i class="fas fa-heading"></i>
-                              </div>
-                            </div>
-                            <input required type="date" id="donateDate" name="donateDate" placeholder="Enter title Here"
-                              class="form-control" />
-                          </div>
-                          <!-- donate date  -->
-                          <div class="input-group mt-1">
-                            <div class="input-group-prepend">
-                              <div class="input-group-text">
-                                <i class="fas fa-heading"></i>
+                                <i class="fas fa-calendar-week"></i>
                               </div>
                             </div>
                             <input required type="date" id="lastBDDate" name="lastBDDate" placeholder="Enter title Here"
                               class="form-control" />
                           </div>
                           <!-- donate date  -->
+                          <label for="basic-url" class="form-label">Any problem</label>
                           <div class="input-group mt-1">
                             <div class="input-group-prepend">
                               <div class="input-group-text">
-                                <i class="fas fa-heading"></i>
+                                <i class="fas fa-exclamation-circle"></i>
                               </div>
                             </div>
-                            <input required type="text" id="problem" name="problem" placeholder="Enter title Here"
+                            <input required type="text" id="problem" name="problem" placeholder="Any Problem.."
                               class="form-control" />
                           </div>
-                          <!-- donate date  -->
-                          <div class="input-group mt-1">
-                            <div class="input-group-prepend">
-                              <div class="input-group-text">
-                                <i class="fas fa-heading"></i>
-                              </div>
-                            </div>
-                            <input required type="text" id="location" name="location" placeholder="Enter title Here"
-                              class="form-control" />
-                          </div>
+                          
                           <!-- Button -->
                           <div class="d-flex mt-3">
-                            <button class="btn bg-primary text-white text-uppercase btn-sm" type="submit">Post</button>
+                            <button class="btn bg-primary text-white text-uppercase btn-sm" type="submit">Apply</button>
                             <button type="button" class="btn btn-secondary ms-3 btn-sm"
                               data-bs-dismiss="modal">Close</button>
                           </div>

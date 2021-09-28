@@ -18,9 +18,9 @@
 					<p th:text="${p.zilla}">Address</p>
 				</div>
 				<div>
-					<a th:href="@{'/user/update-post/'+${p.id}}" type="button" class="btn btn-outline-info btn-sm"><i
+					<a th:href="@{'/user/update-post/'+${p.id}}" title="Edit" type="button" class="btn btn-outline-info btn-sm"><i
 							class="fas fa-pen-square"></i></a>
-					<a th:href="@{'/user/delete/'+${p.id}}" type="button" class="btn btn-outline-danger btn-sm"><i
+					<a th:href="@{'/user/delete/'+${p.id}}" type="button" title="Delete" class="btn btn-outline-danger btn-sm"><i
 							class="far fa-trash-alt"></i></a>
 				</div>
 			</div>
@@ -29,7 +29,7 @@
 				blanditiis, quaerat facere ab hic autem?</p>
 			<div>
 				<a th:href="@{'/user/blood-post-details/'+${p.id}}" type="button"
-					class="btn btn-outline-info btn-sm">More</a>
+					class="btn btn-outline-info btn-sm">Continue Reading</a>
 			</div>
 		</div>
 		<!-- Pagination -->
@@ -51,6 +51,12 @@
 				</li>
 			</ul>
 		</nav>
+		<script>
+			$(document).ready(() => {
+				$('.item').removeClass('active');
+				$('#post-link').addClass('active');
+			});
+		</script>
 	</section>
 </body>
 

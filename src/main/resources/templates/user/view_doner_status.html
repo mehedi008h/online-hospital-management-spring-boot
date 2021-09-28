@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/User-profile::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<section>
+		<div class="card">
+			<div class="d-flex justify-content-between align-items-center ps-3 pe-3 pt-2 pb-2">
+				<h5 th:text="${doner.bloodPost.title}" class="mt-2">Blood Donate Request</h5>
+				<!-- Button trigger modal -->
+				<a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<i class="fas fa-info-circle text-warning"></i>
+				</a>
+			</div>
+		</div>
+		<div class="card p-3" id="b-status">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="ps-3 pt-2 pb-1 bg-info rounded">
+						<h5 class=" text-white fw-bold mt-1">Blood Information</h5>
+					</div>
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th scope="row"><i class="fas fa-signature"></i></th>
+								<td>Status</td>
+								<td th:if="${doner.status}"><button
+										class="btn btn-outline-success btn-sm">Accepted</button>
+										<i class="fas fa-check-circle ms-2 text-success"></i>
+								</td>
+								<td th:unless="${doner.status}"><button
+										class="btn btn-outline-warning btn-sm">Requested</button>
+										<i class="fas fa-question-circle ms-2 text-warning"></i>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-signature"></i></th>
+								<td>Zilla</td>
+								<td th:text="${doner.bloodPost.zilla}">Otto</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-briefcase"></i></th>
+								<td>Thana</td>
+								<td th:text="${doner.bloodPost.thana}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-at"></i></th>
+								<td>Email</td>
+								<td th:text="${doner.bloodPost.email}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-mobile-alt"></i></th>
+								<td>Phone</td>
+								<td th:text="${doner.bloodPost.phone}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-address-book"></i></th>
+								<td>Address</td>
+								<td th:text="${doner.bloodPost.location}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-notes-medical"></i></th>
+								<td>Blood Group</td>
+								<td th:text="${doner.bloodPost.blood_group}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-calendar-check"></i></th>
+								<td>Hospital Name</td>
+								<td th:text="${doner.hospitalName}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-calendar-check"></i></th>
+								<td>Donate Date</td>
+								<td th:text="${doner.donateDate}">@twitter</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<div class="ps-3 pt-2 pb-1 bg-info rounded">
+						<h5 class=" text-white fw-bold mt-1">Doner Information</h5>
+					</div>
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th scope="row"><i class="fas fa-signature"></i></th>
+								<td>Full Name</td>
+								<td th:text="${doner.user.name}">Otto</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-briefcase"></i></th>
+								<td>Work</td>
+								<td th:text="${doner.user.work}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-at"></i></th>
+								<td>Email</td>
+								<td th:text="${doner.user.email}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-mobile-alt"></i></th>
+								<td>Phone</td>
+								<td th:text="${doner.user.phone}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-address-book"></i></th>
+								<td>Address</td>
+								<td th:text="${doner.user.address}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-notes-medical"></i></th>
+								<td>Blood Group</td>
+								<td th:text="${doner.user.blood_group}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-calendar-check"></i></th>
+								<td>Birth Date</td>
+								<td th:text="${doner.user.bod}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-calendar-check"></i></th>
+								<td>Last Donate Date</td>
+								<td th:text="${doner.lastBDDate}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-question-circle"></i></th>
+								<td>Problem</td>
+								<td th:text="${doner.problem}">@twitter</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<button onclick="donateStatus()" class="btn btn-outline bg-info text-white fw-bold">Print</button>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			function donateStatus() {
+				const status = document.getElementById('b-status');
+				window.print();
+			}
+		</script>
+	</section>
+</body>
+
+</html>

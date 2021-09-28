@@ -11,7 +11,6 @@ import com.online.hospital.managment.repository.UserRepository;
 import com.online.hospital.managment.repository.comment.BlogCommentRepository;
 import com.online.hospital.managment.service.*;
 
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
@@ -149,8 +148,29 @@ public class UserController {
     	String username = principal.getName();
         User currentUser = this.userRepository.getUserByUserName(username);
         List<Doner> doners = currentUser.getDoners();
+        boolean dRequest = true;
+        if(doners.size() == 0) {
+        	dRequest = false;
+        }
         model.addAttribute("doners", doners);
+        model.addAttribute("dRequest", dRequest);
         return "user/blood_donate_request";
+    }
+    
+ // blood donate request
+    @GetMapping("/confrim-donate-blood")
+    public String confrimDonateBlood(Model model, Principal principal) {
+    	model.addAttribute("title", "Confrim Donate Blood - Online Hospital management");
+    	String username = principal.getName();
+        User currentUser = this.userRepository.getUserByUserName(username);
+        List<BloodPost> bloodPosts = currentUser.getBloodPosts();
+        boolean dRequest = true;
+        if(bloodPosts.size() == 0) {
+            dRequest = false;
+        }
+        model.addAttribute("bloodPosts", bloodPosts);
+        model.addAttribute("dRequest", dRequest);
+        return "user/confrim_donate_blood";
     }
 
     //change password
@@ -258,6 +278,44 @@ public class UserController {
         donerRepository.save(doner);
         session.setAttribute("message", new Message("Your comment is added", "success"));
         return "redirect:/user/blood-post-details/"+doner.getId();
+    }
+    
+ // edit blog
+    @GetMapping("/update-confrim/{id}")
+    public String updateBlog(@PathVariable(name = "id") Long id,Model model)
+    {
+        Doner doner = donerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        int uId = doner.getUser().getId();
+        System.out.println(uId);
+        model.addAttribute("doner",doner);
+        return "/user/edit_blood_status";
+    }
+    
+  //process edit blog post
+    @PostMapping("/process-doner-confrim/{id}")
+    public String processDonateConfrim(@PathVariable("id") Long id,
+    		@ModelAttribute("doner") Doner doner,Principal principal,HttpSession session)
+    {
+        Doner doners = donerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        int uId = doners.getUser().getId();
+        int bId = doners.getBloodPost().getId();
+        BloodPost bloodPost = this.bloodPostRepository.getBloodPostByBloodPostId(bId);
+        User user = this.userRepository.getUserByUserId(uId);
+        doner.setUser(user);
+        doner.setBloodPost(bloodPost);
+        doner.setStatus(true);
+        donerRepository.save(doner);
+        session.setAttribute("message", new Message("Your comment is added", "success"));
+        return "redirect:/user/confrim-donate-blood";
+    }
+    
+ // show doner status
+    @GetMapping("/view-doner-status/{id}")
+    public String showDonerStatus(@PathVariable(name = "id") Long id,Model model)
+    {
+        Doner doner = donerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("doner",doner);
+        return "/user/view_doner_status";
     }
 
     // Delete blood post
@@ -395,5 +453,11 @@ public class UserController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPage", ambulances.getTotalPages());
         return "/user/ambulance";
+    }
+    
+    @RequestMapping("/covid-19")
+    public String covid(Model model) {
+    	model.addAttribute("title","Covid-19 - Online Hospital Management");
+    	return "/user/covid";
     }
 }

@@ -8,6 +8,9 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.List;
+import java.util.Optional;
+
 @Entity
 public class Doner {
 	@Id

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/User-profile::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<section>
+		<div class="card">
+			<div class="d-flex justify-content-between align-items-center ps-3 pe-3 pt-2 pb-2">
+				<h5 th:text="${doner.bloodPost.title}" class="mt-2">Blood Donate Request</h5>
+				<!-- Button trigger modal -->
+				<a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					<i class="fas fa-info-circle text-warning"></i>
+				</a>
+			</div>
+		</div>
+		<div class="card p-3">
+			<div class="row">
+				<div class="col-md-6">
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th scope="row"><i class="fas fa-signature"></i></th>
+								<td>Full Name</td>
+								<td th:text="${doner.user.name}">Otto</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-briefcase"></i></th>
+								<td>Work</td>
+								<td th:text="${doner.user.work}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-at"></i></th>
+								<td>Email</td>
+								<td th:text="${doner.user.email}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-mobile-alt"></i></th>
+								<td>Phone</td>
+								<td th:text="${doner.user.phone}">Thornton</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-address-book"></i></th>
+								<td>Address</td>
+								<td th:text="${doner.user.address}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="fas fa-notes-medical"></i></th>
+								<td>Blood Group</td>
+								<td th:text="${doner.user.blood_group}">@twitter</td>
+							</tr>
+							<tr>
+								<th scope="row"><i class="far fa-calendar-check"></i></th>
+								<td>Birth Date</td>
+								<td th:text="${doner.user.bod}">@twitter</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<form th:action="@{/user/process-doner-confrim/{id}(id=${doner.id})}" th:object="${doner}"
+						method="post">
+						<!-- Title -->
+						<label for="basic-url" class="form-label">Mention Hospital Name</label>
+						<div class="input-group mt-1">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<i class="fas fa-heading"></i>
+								</div>
+							</div>
+							<input th:value="${doner.hospitalName}" required type="text" id="hospitalName"
+								name="hospitalName" placeholder="Enter Hospital Name Here" class="form-control" />
+						</div>
+						<!-- donate date  -->
+						<label for="basic-url" class="form-label">Blood Donate Date</label>
+						<div class="input-group mt-1">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<i class="fas fa-heading"></i>
+								</div>
+							</div>
+							<input th:value="${doner.donateDate}" required type="date" id="donateDate"
+								name="donateDate" placeholder="Enter title Here" class="form-control" />
+						</div>
+						<!-- donate date  -->
+						<label for="basic-url" class="form-label">Doner Last Blood Donate Date</label>
+						<div class="input-group mt-1">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<i class="fas fa-heading"></i>
+								</div>
+							</div>
+							<input th:value="${doner.lastBDDate}" readonly required type="date" id="lastBDDate"
+								name="lastBDDate" placeholder="Enter title Here" class="form-control" />
+						</div>
+						<!-- donate date  -->
+						<label for="basic-url" class="form-label">Doner Problem</label>
+						<div class="input-group mt-1">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<i class="fas fa-heading"></i>
+								</div>
+							</div>
+							<input th:value="${doner.problem}" readonly required type="text" id="problem" name="problem"
+								placeholder="Enter title Here" class="form-control" />
+						</div>
+						<!-- donate date  -->
+						<label for="basic-url" class="form-label">Mention Hospital Location</label>
+						<div class="input-group mt-1">
+							<div class="input-group-prepend">
+								<div class="input-group-text">
+									<i class="fas fa-heading"></i>
+								</div>
+							</div>
+							<input th:value="${doner.location}" required type="text" id="location"
+								name="location" placeholder="Enter Location Here" class="form-control" />
+						</div>
+						<!-- Button -->
+						<div class="d-flex mt-3">
+							<button class="btn bg-primary w-100 fw-bold text-white text-uppercase btn-sm" type="submit">Accept</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

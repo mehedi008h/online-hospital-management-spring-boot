@@ -1,5 +1,6 @@
 package com.online.hospital.managment.repository;
 
+import com.online.hospital.managment.model.BloodPost;
 import com.online.hospital.managment.model.Hospital;
 import com.online.hospital.managment.model.User;
 import org.springframework.data.domain.Page;
@@ -22,4 +23,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
             +"OR u.email LIKE %?1%"
             +"OR u.phone LIKE %?1%")
     public Page<User> findAll(String keyword,Pageable pageable);
+
+    @Query("select u from User u where u.id = :id")
+    public User getUserByUserId(@Param("id") Integer id);
 }

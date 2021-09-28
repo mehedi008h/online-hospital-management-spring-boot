@@ -12,6 +12,7 @@
             rel="stylesheet"
             integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
             crossorigin="anonymous">
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
@@ -30,9 +31,9 @@
     <title th:text="${title}">Base html</title>
 </head>
 <body id="body-pd">
-<header class="header" id="header">
+<header class="header bg-info" id="header">
     <div class="header__toggle">
-        <i class='bx bx-menu' id="header-toggle"></i>
+        <i class='bx bx-menu text-white' id="header-toggle"></i>
     </div>
 
     <div class="header__img">
@@ -49,27 +50,27 @@
             </a>
 
             <div class="nav__list">
-                <a th:href="@{/admin/index}" href="#" class="nav__link active">
+                <a th:href="@{/admin/index}" href="#" id="admin-home" class="nav__link">
                     <i class='bx bx-grid-alt nav__icon' ></i>
                     <span class="nav__name">Dashboard</span>
                 </a>
 
-                <a th:href="@{/admin/user/0}" href="#" class="nav__link">
+                <a th:href="@{/admin/user/0}" id="user" href="#" class="nav__link">
                     <i class='bx bx-user nav__icon' ></i>
                     <span class="nav__name">Users</span>
                 </a>
 
-                <a th:href="@{/admin/blog/0}" href="#" class="nav__link">
+                <a th:href="@{/admin/blog/0}" id="blog" href="#" class="nav__link">
                     <i class='bx bx-message-square-detail nav__icon' ></i>
                     <span class="nav__name">Blog Post</span>
                 </a>
 
-                <a th:href="@{/admin/hospital/0}" href="#" class="nav__link">
+                <a th:href="@{/admin/hospital/0}" id="hospital" href="#" class="nav__link">
                     <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
                     <span class="nav__name">Hospital</span>
                 </a>
 
-                <a th:href="@{/admin/ambulance/0}" href="#" class="nav__link">
+                <a th:href="@{/admin/ambulance/0}" id="ambulance" href="#" class="nav__link">
                     <i class='bx bx-folder nav__icon' ></i>
                     <span class="nav__name">Ambulance</span>
                 </a>
@@ -108,7 +109,6 @@
         crossorigin="anonymous"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 

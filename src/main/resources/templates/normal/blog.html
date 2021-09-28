@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="user/base::layout(~{::section})">
+	th:replace="normal/base::layout(~{::section})">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -28,7 +28,7 @@
 								</form>
 							</div>
 						</div>
-						<div class="card">
+						<div class="card mt-4">
 							<div class="header">
 								<h2>Instruction</h2>
 							</div>
@@ -40,24 +40,12 @@
 						</div>
 					</div>
 					<div class="col-md-8 mt-4">
-						<div th:each="b :${blogs}" class="card single_post">
-							<div class="body">
-								<h3 class="text-success" th:text="${b.title}"></h3>
-								<p th:utext="${b.description}"></p>
-							</div>
-							<div class="footer">
-								<div class="actions">
-									<a th:href="@{'/user/blog-details/'+${b.id}}"
-										href="javascript:void(0);"								
-										class="btn btn-outline-secondary btn-sm">Continue Reading</a>
-								</div>
-								<ul class="stats">
-									<li><a href="javascript:void(0);">General</a></li>
-									<li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
-									<li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
-								</ul>
-							</div>
-						</div>
+					<div th:each="b :${blogs}" class="card mb-3 rounded">
+						<h3 class="text-success" th:text="${b.title}"></h3>
+						<p th:utext="${b.description}"></p>
+						<a th:href="@{/login}" class="btn btn-outline-secondary btn-sm w-25">Continue Reading</a>
+					</div>
+						
 
 						<!-- Pagination -->
 						<nav aria-label="Page navigation example">
