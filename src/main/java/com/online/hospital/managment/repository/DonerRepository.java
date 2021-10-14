@@ -18,5 +18,5 @@ public interface DonerRepository extends JpaRepository<Doner, Long> {
 
     @Query("select u from Doner u where u.id = :id")
     public BloodPost getBloodPostByBloodPostId(@Param("id") Integer id);
-
+    
 }

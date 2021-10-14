@@ -1,82 +1,90 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="user/base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User</title>
 </head>
+
 <body>
-<section>
-    <div class="container mt-5">
-        <div class="row flex-lg-nowrap">
-            <div class="col">
-                <div class="row flex-lg-nowrap">
-                    <div class="col mb-3 mt-4">
-                        <div class="e-panel card">
-                            <div class="card-body">
-                                <div class="body search">
-                                    <form action="">
-                                        <div class="input-group m-b-0">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                            </div>
-                                            <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
-                                        </div>
-                                    </form>
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4 mt-4">
+                    <div class="card p-2">
+                        <form action="">
+                            <div class="input-group mt-1">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
                                 </div>
-                                <div class="e-table">
-                                    <div class="table-responsive table-lg mt-3">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                            <tr>                                               
-                                                <th class="max-width">Name</th>
-                                                <th class="sortable">Phone</th>
-                                                <th class="sortable">Zilla</th>
-                                                <th class="sortable">Thana</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr th:each="a :${ambulances}">                     
-                                                <td th:text="${a.name}" class="text-nowrap align-middle">Adam Cotter</td>
-                                                <td th:text="${a.phone}" class="text-nowrap align-middle"></td>
-                                                <td th:text="${a.zilla}" class="text-nowrap align-middle"></td>
-                                                <td th:text="${a.thana}" class="text-nowrap align-middle"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <!-- Pagination -->
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination">
-                                                <li th:if="${currentPage != 0}" class="page-item">
-                                                    <a class="page-link" th:href="@{'/user/ambulance/'+${currentPage - 1}}" href="#">Previous</a>
-                                                </li>
-
-                                                <li th:classappend="${currentPage== i - 1?'active':''}"
-                                                    th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                                    <a class="page-link" th:href="@{'/user/ambulance/'+${i - 1}}" href="#">
-                                                        <span th:text="${i}"></span>
-                                                    </a>
-                                                </li>
-
-                                                <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                                    <a class="page-link" th:href="@{'/user/ambulance/'+${currentPage + 1}}" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                                <input th:value="${keyword}" name="keyword" required="required" type="search"
+                                    class="form-control" placeholder="Search...">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card p-2">
+                        <h3 class="text-center text-success">Instraction</h3>
+                        <hr>
+                        <ul>
+                            <li>You can search by Name, Address, Blood Group</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 mt-4">
+                    <div th:each="a :${ambulances}" class="card p-1">
+                        <div class="row">
+                            <div class="col-md-2 text-center">
+                                <div class="ms-2 mt-1">
+                                    <img style="height: 60px; width: 60px; border: 2px solid sienna; border-radius: 50%;"
+                                        th:src="@{/image/ambulance.png}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="ms-1">
+                                    <h5 th:text="${a.name}" class="text-success"></h5>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p th:text="${a.thana}"></p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p th:text="${a.zilla}"></p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p th:text="${a.phone}"></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li th:if="${currentPage != 0}" class="page-item">
+                                <a class="page-link" th:href="@{'/user/ambulance/'+${currentPage - 1}}"
+                                    href="#">Previous</a>
+                            </li>
+
+                            <li th:classappend="${currentPage== i - 1?'active':''}"
+                                th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                <a class="page-link" th:href="@{'/user/ambulance/'+${i - 1}}" href="#">
+                                    <span th:text="${i}"></span>
+                                </a>
+                            </li>
+
+                            <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                                <a class="page-link" th:href="@{'/user/ambulance/'+${currentPage + 1}}"
+                                    href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </body>
+
 </html>

@@ -82,7 +82,7 @@ public class HomeController {
             //processing file upload
             if(file.isEmpty())
             {
-                user.setImage("");
+                user.setImage("user.png");
             }
             else
             {
@@ -91,6 +91,7 @@ public class HomeController {
                 Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
             }
+            user.setLastDonateDate("Not yet Donate");
             user.setRole("ROLE_USER");
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             User result = this.userRepository.save(user);

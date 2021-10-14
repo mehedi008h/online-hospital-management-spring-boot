@@ -41,7 +41,7 @@ public class ForgotController {
         int otp = random.nextInt(999999);
         System.out.println("OTP "+otp);
         //send otp
-        String subject = "OTP From SCM";
+        String subject = "OTP From Online Hospital Management";
         String message = ""
                 +"<div style='border: 1px solid #e2e2e2; padding:20px'>"
                 +"<h1>"

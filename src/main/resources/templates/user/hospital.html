@@ -1,105 +1,125 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="user/base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog</title>
 </head>
+
 <body>
-<section>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-12 mt-4">
-                <div class="card card-margin">
-                    <div class="card-body">
-                        <div class="row search-body">
-                            <div class="col-lg-12">
-                                <div class="search-result">
-                                    <div class="result-body">
-                                        <div class="body search">
-                                            <form action="">
-                                                <div class="input-group m-b-0">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                                    </div>
-                                                    <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table widget-26">
-                                                <tbody>
-                                                <tr th:each="h :${hospitals}">
-                                                    <td>
-                                                        <div class="widget-26-job-emp-img">
-                                                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="Company" />
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="widget-26-job-title">
-                                                            <a th:href="@{'/user/hospital-details/'+${h.id}}" href="#"><span th:text="${h.name}"></span></a>
-                                                            <p class="m-0"><span th:text="${h.email}" class="text-muted time"></span></p>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="widget-26-job-info">
-                                                            <p th:text="${h.zilla}" class="type m-0">Full-Time</p>
-                                                            <p th:text="${h.thana}" class="text-muted m-0">in <span class="location">London, UK</span></p>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="widget-26-job-salary">
-                                                            <p th:text="${h.division}" class="type m-0">Full-Time</p>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="widget-26-job-category bg-soft-base align-items-center">
-                                                            <i class="indicator bg-base"></i>
-                                                            <span th:text="${h.phone}">Software Development</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="widget-26-job-starred">
-                                                            <a th:href="@{'/user/hospital-details/'+${h.id}}" href="#">
-                                                                <i class="far fa-eye"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4 mt-4">
+                    <div class="card p-2">
+                        <form action="">
+                            <div class="input-group mt-1">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </div>
+                                <input th:value="${keyword}" name="keyword" required="required" type="search"
+                                    class="form-control" placeholder="Search...">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card p-2">
+                        <h3 class="text-center text-success">Instraction</h3>
+                        <hr>
+                        <ul>
+                            <li>You can search by Name, Address, Blood Group</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 mt-4">
+                    <div class="card card-margin">
+                        <div class="card-body">
+                            <div class="row search-body">
+                                <div class="col-lg-12">
+                                    <div class="search-result">
+                                        <div class="result-body">
+                                            <div class="table-responsive">
+                                                <table class="table widget-26">
+                                                    <tbody>
+                                                        <tr th:each="h :${hospitals}">
+
+                                                            <td>
+                                                                <div class="widget-26-job-title">
+                                                                    <a th:href="@{'/user/hospital-details/'+${h.id}}"
+                                                                        href="#"><span th:text="${h.name}"
+                                                                            class="text-success fw-bold"></span></a>
+                                                                    <p class="m-0"><span th:text="${h.email}"
+                                                                            class="text-muted time"></span></p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="widget-26-job-info">
+                                                                    <p th:text="${h.zilla}" class="type m-0">Full-Time
+                                                                    </p>
+                                                                    <p th:text="${h.thana}" class="text-muted m-0">in
+                                                                        <span class="location">London, UK</span>
+                                                                    </p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="widget-26-job-salary">
+                                                                    <p th:text="${h.division}" class="type m-0">
+                                                                        Full-Time</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div
+                                                                    class="widget-26-job-category bg-soft-base align-items-center">
+                                                                    <i class="indicator bg-base"></i>
+                                                                    <span th:text="${h.phone}">Software
+                                                                        Development</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="widget-26-job-starred">
+                                                                    <a th:href="@{'/user/hospital-details/'+${h.id}}"
+                                                                        href="#">
+                                                                        <i class="far fa-eye"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Pagination -->
+                            <nav aria-label="Page navigation example d-flex justify-content-center">
+                                <ul class="pagination">
+                                    <li th:if="${currentPage != 0}" class="page-item">
+                                        <a class="page-link" th:href="@{'/user/hospital/'+${currentPage - 1}}"
+                                            href="#">Previous</a>
+                                    </li>
+
+                                    <li th:classappend="${currentPage== i - 1?'active':''}"
+                                        th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                        <a class="page-link" th:href="@{'/user/hospital/'+${i - 1}}" href="#">
+                                            <span th:text="${i}"></span>
+                                        </a>
+                                    </li>
+
+                                    <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                                        <a class="page-link" th:href="@{'/user/hospital/'+${currentPage + 1}}"
+                                            href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
-                        <!-- Pagination -->
-                        <nav aria-label="Page navigation example d-flex justify-content-center">
-                            <ul class="pagination">
-                                <li th:if="${currentPage != 0}" class="page-item">
-                                    <a class="page-link" th:href="@{'/user/hospital/'+${currentPage - 1}}" href="#">Previous</a>
-                                </li>
-
-                                <li th:classappend="${currentPage== i - 1?'active':''}"
-                                    th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                    <a class="page-link" th:href="@{'/user/hospital/'+${i - 1}}" href="#">
-                                        <span th:text="${i}"></span>
-                                    </a>
-                                </li>
-
-                                <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                    <a class="page-link" th:href="@{'/user/hospital/'+${currentPage + 1}}" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </body>
+
 </html>

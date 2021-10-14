@@ -1,6 +1,12 @@
 package com.online.hospital.managment.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.online.hospital.managment.model.comment.BloodPostComment;
+import com.online.hospital.managment.model.comment.HospitalComment;
 
 @Entity
 @Table(name = "Hospital")
@@ -18,6 +24,9 @@ public class Hospital {
     private String image;
     @Column(length = 5000)
     private String description;
+    
+    @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HospitalComment> hospitalComment = new ArrayList<>();
 
     public Hospital() {
     }
@@ -101,20 +110,21 @@ public class Hospital {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public List<HospitalComment> getHospitalComment() {
+		return hospitalComment;
+	}
 
-    @Override
-    public String toString() {
-        return "Hospital{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", google_location='" + google_location + '\'' +
-                ", division='" + division + '\'' +
-                ", zilla='" + zilla + '\'' +
-                ", thana='" + thana + '\'' +
-                ", image='" + image + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
+	public void setHospitalComment(List<HospitalComment> hospitalComment) {
+		this.hospitalComment = hospitalComment;
+	}
+
+	@Override
+	public String toString() {
+		return "Hospital [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", google_location="
+				+ google_location + ", division=" + division + ", zilla=" + zilla + ", thana=" + thana + ", image="
+				+ image + ", description=" + description + ", hospitalComment=" + hospitalComment + "]";
+	}
+
+	
 }

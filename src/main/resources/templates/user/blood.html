@@ -1,183 +1,242 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="user/base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog</title>
 </head>
+
 <body>
-<section>
-    <div id="main-content" class="blog-page">
-        <div class="container mt-5">
-            <div class="row clearfix">
-            <div class="col-md-4 mt-4">
-            	<div class="card">
-                        <div class="body search">
-                            <form action="">
-                                <div class="input-group m-b-0">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                    </div>
-                                    <input th:value="${keyword}" name="keyword" required="required" type="search" class="form-control" placeholder="Search...">
-                                </div>                 
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="body widget text-center">
-                            <h2 class="mb-2">Need Blood</h2>
-                            <form th:action="@{/user/process-post}" th:object="${bloodPosts}" method="post">
-                                <!-- Title -->
-                                <div class="input-group mt-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-heading"></i>
+    <section>
+        <div id="main-content" class="blog-page">
+            <div class="container mt-5">
+                <div class="row clearfix">
+                    <div class="col-md-4 mt-4">
+                        <div class="card">
+                            <div class="body search">
+                                <form action="">
+                                    <div class="input-group m-b-0">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-search"></i></span>
                                         </div>
+                                        <input th:value="${keyword}" name="keyword" required="required" type="search"
+                                            class="form-control" placeholder="Search...">
                                     </div>
-                                    <input required type="text" id="title" name="title"
-                                           placeholder="Enter title Here" class="form-control" />
-                                </div>
-                                <!-- Phone -->
-                                <div class="input-group mt-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-phone"></i>
-                                        </div>
-                                    </div>
-                                    <input required type="number" id="phone" name="phone"
-                                           placeholder="Enter number Here" class="form-control" />
-                                </div>
-                                <!-- Email -->
-                                <div class="input-group mt-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-envelope-open-text"></i>
-                                        </div>
-                                    </div>
-                                    <input required type="email" id="email" name="email"
-                                           placeholder="Enter email Here" class="form-control" />
-                                </div>
-                                <!-- Zilla -->
-                                <div class="input-group mt-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="far fa-address-card"></i>
-                                        </div>
-                                    </div>
-                                    <input required type="text" id="zilla" name="zilla"
-                                           placeholder="Enter zilla Here" class="form-control" />
-                                </div>
-                                <!-- Thana -->
-                                <div class="input-group mt-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="far fa-address-card"></i>
-                                        </div>
-                                    </div>
-                                    <input required type="text" id="thana" name="thana"
-                                           placeholder="Enter thana Here" class="form-control" />
-                                </div>
-                                <!-- Location -->
-                                <div class="input-group mt-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-map-marked-alt"></i>
-                                        </div>
-                                    </div>
-                                    <input required type="text" id="location" name="location"
-                                           placeholder="Enter location Here" class="form-control" />
-                                </div>
-                                <!-- Blood group -->
-                                <div class="input-group mt-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-clinic-medical"></i>
-                                        </div>
-                                    </div>
-                                    <input required type="text" id="blood_group" name="blood_group"
-                                           placeholder="Enter blood group Here" class="form-control" />
-                                </div>
-                                <!-- User description -->
-                                <div class="form-group mt-3">
-									<textarea name="description" id="mytextarea"
-                                              class="form-control" rows="10"
-                                              placeholder="Enter Description here.."></textarea>
-                                </div>
-                                <!-- Button -->
-                                <div class="d-grid gap-2 mt-3">
-                                    <button class="btn bg-primary text-white text-uppercase"
-                                            type="submit">Post</button>
-                                    <button class="btn btn-warning text-white text-uppercase"
-                                            type="reset">Reset</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Instruction</h2>
-                        </div>
-                        <div class="body widget">
-                        </div>
-                    </div>
-            </div>
-            <div class="col-md-8 mt-4">
-            	<div th:each="p :${posts}" class="card single_post">
-                        <div class="body">
-                            <h3 class="text-success" th:text="${p.title}"></h3>
-                            <p th:utext="${p.description}"></p>
-                        </div>
-                        <div class="footer">
-                            <div class="actions">
-                                <a th:href="@{'/user/blood-post-details/'+${p.id}}" href="javascript:void(0);" class="btn btn-outline-secondary btn-sm">Continue Reading</a>
+                                </form>
                             </div>
-                            <ul class="stats">
-                                <li><a href="javascript:void(0);">General</a></li>
-                                <li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
-                                <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
-                            </ul>
+                        </div>
+                        <div class="card p-3">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Instruction
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" style="margin-top: 100px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Instraction</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="body widget text-center">
+                                <h2 class="mb-2">Need Blood</h2>
+                                <form th:action="@{/user/process-post}" th:object="${bloodPosts}" method="post">
+                                    <!-- Title -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-heading"></i>
+                                            </div>
+                                        </div>
+                                        <input required type="text" id="title" name="title"
+                                            placeholder="Enter title Here" class="form-control" />
+                                    </div>
+                                    <!-- Phone -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-phone"></i>
+                                            </div>
+                                        </div>
+                                        <input required type="number" id="phone" name="phone"
+                                            placeholder="Enter number Here" class="form-control" />
+                                    </div>
+                                    <!-- Email -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-envelope-open-text"></i>
+                                            </div>
+                                        </div>
+                                        <input required type="email" id="email" name="email"
+                                            placeholder="Enter email Here" class="form-control" />
+                                    </div>
+                                    <!-- Zilla -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-venus-mars"></i>
+                                            </div>
+                                        </div>
+                                        <select name="gender" class="form-select" aria-label="Default select example">
+                                            <option selected>Choose Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <!-- Zilla -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-address-card"></i>
+                                            </div>
+                                        </div>
+                                        <input required type="text" id="zilla" name="zilla"
+                                            placeholder="Enter zilla Here" class="form-control" />
+                                    </div>
+                                    <!-- Thana -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="far fa-address-card"></i>
+                                            </div>
+                                        </div>
+                                        <input required type="text" id="thana" name="thana"
+                                            placeholder="Enter thana Here" class="form-control" />
+                                    </div>
+                                    <!-- Location -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-map-marked-alt"></i>
+                                            </div>
+                                        </div>
+                                        <input required type="text" id="location" name="location"
+                                            placeholder="Enter location Here" class="form-control" />
+                                    </div>
+                                    <!-- Blood group -->
+                                    <div class="input-group mt-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-hand-holding-medical"></i>
+                                            </div>
+                                        </div>
+                                        <select name="blood_group" class="form-select"
+                                            aria-label="Default select example">
+                                            <option selected>Choose Blood Group</option>
+                                            <option value="A+">A+</option>
+                                            <option value="B+">B+</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="O+">O+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                    </div>
+                                    <!-- User description -->
+                                    <div class="form-group mt-3">
+                                        <textarea name="description" id="mytextarea" class="form-control" rows="10"
+                                            placeholder="Enter Description here.."></textarea>
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="d-grid gap-2 mt-3">
+                                        <button class="btn bg-primary text-white text-uppercase"
+                                            type="submit">Post</button>
+                                        <button class="btn btn-warning text-white text-uppercase"
+                                            type="reset">Reset</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-8 mt-4">
 
-                    <!-- Pagination -->
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li th:if="${currentPage != 0}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/blood/'+${currentPage - 1}}" href="#">Previous</a>
-                            </li>
+                        <div th:each="p :${posts}" class="card single_post">
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h3 class="text-success" th:text="${p.title}"></h3>
+                                        <p class="text-dark" th:text="${p.time}"></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button th:if="${p.status}" class="btn btn-sm btn-success"><i
+                                                class="fas fa-clipboard-check me-1"></i>Managed</button>
+                                        <button th:unless="${p.status}" class="btn btn-sm btn-outline-success"><i
+                                                class="fas fa-hourglass-half me-1"></i>Active</button>
+                                    </div>
+                                </div>
 
-                            <li th:classappend="${currentPage== i - 1?'active':''}"
-                                th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/blood/'+${i - 1}}" href="#">
-                                    <span th:text="${i}"></span>
-                                </a>
-                            </li>
+                                <p th:utext="${p.description}"></p>
+                            </div>
+                            <div class="footer">
+                                <div class="actions">
+                                    <a th:href="@{'/user/blood-post-details/'+${p.id}}" href="javascript:void(0);"
+                                        class="btn btn-outline-secondary btn-sm">Continue Reading</a>
+                                </div>
+                                <ul class="stats">
+                                    <li><a href="javascript:void(0);">General</a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
+                                    <li><a href="javascript:void(0);" class="fa fa-comment">128</a></li>
+                                </ul>
+                            </div>
+                        </div>
 
-                            <li th:if="${currentPage+1 != totalPage}" class="page-item">
-                                <a class="page-link" th:href="@{'/user/blood/'+${currentPage + 1}}" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-            </div>
-                
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li th:if="${currentPage != 0}" class="page-item">
+                                    <a class="page-link" th:href="@{'/user/blood/'+${currentPage - 1}}"
+                                        href="#">Previous</a>
+                                </li>
+
+                                <li th:classappend="${currentPage== i - 1?'active':''}"
+                                    th:each="i :${#numbers.sequence(1,totalPage)}" class="page-item">
+                                    <a class="page-link" th:href="@{'/user/blood/'+${i - 1}}" href="#">
+                                        <span th:text="${i}"></span>
+                                    </a>
+                                </li>
+
+                                <li th:if="${currentPage+1 != totalPage}" class="page-item">
+                                    <a class="page-link" th:href="@{'/user/blood/'+${currentPage + 1}}"
+                                        href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#mytextarea'
-        });
-    </script>
-    <script>
-        $(document).ready(() => {
-            $('.item').removeClass('glow');
-            $('#blood').addClass('glow');
-        });
-    </script>
-</section>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: '#mytextarea'
+            });
+        </script>
+        <script>
+            $(document).ready(() => {
+                $('.item').removeClass('glow');
+                $('#blood').addClass('glow');
+            });
+        </script>
+    </section>
 </body>
+
 </html>

@@ -54,8 +54,10 @@
 					<div class="col-md-2 text-center">
 						<div class="d-flex flex-column">
 						<a th:href="@{'/user/view-doner-status/'+${bd.id}}" type="button" class="btn btn-outline-info btn-sm">View</a>
-						<button th:if="${bd.status}" type="button" class="btn btn-success btn-sm mt-1">Accepted</button>
-						<a th:unless="${bd.status}" th:href="@{'/user/update-confrim/'+${bd.id}}" type="button" class="btn btn-outline-success btn-sm mt-1"><i
+						<button th:if="${bd.status}" type="button" class="btn btn-success btn-sm mt-1"><i
+									class="far fa-check-circle me-2"></i>Accepted</button>
+						
+							<a th:unless="${bd.status}"  th:href="@{'/user/update-confrim/'+${bd.id}}" type="button" class="btn btn-outline-success btn-sm mt-1"><i
 									class="far fa-check-circle me-2"></i>Confrim</a>
 							
 						</div>
@@ -88,8 +90,8 @@
 		</div>
 		<script>
 			$(document).ready(() => {
-				$('.item').removeClass('active');
-				$('#receive-link').addClass('active');
+				$('.item').removeClass('link-active');
+				$('#receive-link').addClass('link-active');
 			});
 		</script>
 	</section>

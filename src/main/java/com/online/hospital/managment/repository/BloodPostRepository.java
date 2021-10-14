@@ -26,5 +26,10 @@ public interface BloodPostRepository extends JpaRepository<BloodPost, Integer> {
     
     @Query("select u from BloodPost u where u.id = :id")
     public BloodPost getBloodPostByBloodPostId(@Param("id") Integer id);
+    
+    @Query("SELECT b FROM BloodPost b WHERE b.location LIKE %?1%"
+            +"OR b.zilla LIKE %?1%"
+            +"OR b.thana LIKE %?1%")
+    public List<BloodPost> findByArea(String keyword);
 
 }

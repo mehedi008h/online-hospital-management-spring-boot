@@ -30,13 +30,22 @@ body {
 .profile-link:hover {
 	background-color: #e9ecef;
 }
-.active {
+.link-active {
     color: white;
     background: linear-gradient(
 335.64deg,#ff589b -19.22%,#ff136f 118.87%)!important;
 }
-.active p {
+.link-active p {
 	color: white;
+}
+.active {
+border-bottom: 3px solid pink;
+color: green;
+}
+
+.service:hover {
+	background: pink;
+    transform: scale(1.1, 1.1);
 }
 
 @media only screen and (max-width: 600px) {

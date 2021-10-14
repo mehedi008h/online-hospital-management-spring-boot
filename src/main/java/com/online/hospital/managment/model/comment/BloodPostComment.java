@@ -7,11 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.online.hospital.managment.model.Blog;
+import com.online.hospital.managment.model.BloodPost;
 import com.online.hospital.managment.model.User;
 
 @Entity
-public class BlogComment {
+public class BloodPostComment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -19,13 +19,13 @@ public class BlogComment {
 	
 	@ManyToOne
 	@JsonIgnore
-	private Blog blog;
+	private BloodPost bloodPost;
 	
 	@ManyToOne
 	@JsonIgnore
 	private User user;
-
-	public BlogComment() {
+	
+	public BloodPostComment() {
 		
 	}
 
@@ -33,13 +33,9 @@ public class BlogComment {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getText() {
 		return text;
@@ -49,12 +45,12 @@ public class BlogComment {
 		this.text = text;
 	}
 
-	public Blog getBlog() {
-		return blog;
+	public BloodPost getBloodPost() {
+		return bloodPost;
 	}
 
-	public void setBlog(Blog blog) {
-		this.blog = blog;
+	public void setBloodPost(BloodPost bloodPost) {
+		this.bloodPost = bloodPost;
 	}
 
 	public User getUser() {
@@ -65,11 +61,4 @@ public class BlogComment {
 		this.user = user;
 	}
 	
-	@Override
-    public boolean equals(Object obj) {
-        return this.id == ((BlogComment)obj).getId();
-    }
-	
-	
-
 }

@@ -24,13 +24,7 @@
                     <article class="card-body jus" style="max-width: 700px;">
                         <h4 class="card-title mt-3">Create Account</h4>
                         <p class="text-center">Get started with your free account</p>
-                        <p>
-                            <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
-                            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
-                        </p>
-                        <p class="divider-text">
-                            <span class="bg-light">OR</span>
-                        </p>
+                        
                         <form th:action="@{/do_register}" method="post" th:object="${user}" enctype="multipart/form-data">
                             <!-- Name field -->
                             <div class="form-group input-group">
@@ -56,9 +50,32 @@
                             <!-- form-group// -->
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fas fa-venus-mars"></i> </span>
+                                </div>
+                                <select name="gender" class="form-select" aria-label="Default select example">
+                                            <option selected>Choose Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                            </div>
+                            <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
                                     <span class="input-group-text"> <i class="fas fa-hand-holding-heart"></i> </span>
                                 </div>
-                                <input th:value="${user.blood_group}" name="blood_group" class="form-control" placeholder="Enter your blood group" type="text">
+                                <select name="blood_group" class="form-select"
+                                            aria-label="Default select example">
+                                            <option selected>Choose Blood Group</option>
+                                            <option value="A+">A+</option>
+                                            <option value="B+">B+</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="O+">O+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O-">O-</option>
+                                        </select>
                             </div>
                             <!-- Address field -->
                             <div class="form-group input-group">

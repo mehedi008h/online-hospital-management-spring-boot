@@ -5,8 +5,12 @@ import javax.persistence.*;
 import org.hibernate.type.TrueFalseType;
 
 import com.online.hospital.managment.model.comment.BlogComment;
+import com.online.hospital.managment.model.comment.BloodPostComment;
+import com.online.hospital.managment.model.comment.HospitalComment;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,11 +25,13 @@ public class User {
     private String phone;
     private String address;
     private String blood_group;
+    private String gender;
     private String work;
     private String bod;
     private String image;
     @Column(length = 5000)
     private String description;
+    private String lastDonateDate;
     private String password;
     private String role;
 
@@ -36,7 +42,13 @@ public class User {
     private List<BlogComment> blogComment = new ArrayList<>();
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BloodPostComment> bloodPostComment = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Doner> doners = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HospitalComment> hospitalComment = new ArrayList<>();
     
     public User() {
     }
@@ -88,8 +100,24 @@ public class User {
     public void setBlood_group(String blood_group) {
         this.blood_group = blood_group;
     }
+    
+    public String getGender() {
+		return gender;
+	}
 
-    public String getWork() {
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getLastDonateDate() {
+		return lastDonateDate;
+	}
+
+	public void setLastDonateDate(String lastDonateDate) {
+		this.lastDonateDate = lastDonateDate;
+	}
+	
+	public String getWork() {
         return work;
     }
 
@@ -160,13 +188,31 @@ public class User {
 	public void setDoners(List<Doner> doners) {
 		this.doners = doners;
 	}
+	
+	public List<BloodPostComment> getBloodPostComment() {
+		return bloodPostComment;
+	}
+
+	public void setBloodPostComment(List<BloodPostComment> bloodPostComment) {
+		this.bloodPostComment = bloodPostComment;
+	}
+	
+	public List<HospitalComment> getHospitalComment() {
+		return hospitalComment;
+	}
+
+	public void setHospitalComment(List<HospitalComment> hospitalComment) {
+		this.hospitalComment = hospitalComment;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", address=" + address
-				+ ", blood_group=" + blood_group + ", work=" + work + ", bod=" + bod + ", image=" + image
-				+ ", description=" + description + ", password=" + password + ", role=" + role + ", bloodPosts="
-				+ bloodPosts + ", blogComment=" + blogComment + "]";
+				+ ", blood_group=" + blood_group + ", gender=" + gender + ", work=" + work + ", bod=" + bod + ", image="
+				+ image + ", description=" + description + ", lastDonateDate=" + lastDonateDate + ", password="
+				+ password + ", role=" + role + ", bloodPosts=" + bloodPosts + ", blogComment=" + blogComment
+				+ ", bloodPostComment=" + bloodPostComment + ", doners=" + doners + ", hospitalComment="
+				+ hospitalComment + "]";
 	}
 
 	
